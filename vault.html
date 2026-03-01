@@ -23,54 +23,36 @@
 </head>
 <body>
 <div class="dashboard">
-    <div class="header">
-        <h1>PREMIUM<span>VAULT</span></h1>
-        <p style="opacity: 0.6; font-size: 14px; margin-top: 5px;">Direct Access Keys • Security Obfuscation Active</p>
-    </div>
+    <div class="header"><h1>PREMIUM<span>VAULT</span></h1><p style="opacity:0.6; font-size:14px;">Direct Access Keys • Obfuscation Active</p></div>
     <div class="grid" id="vault-grid"></div>
     <div class="footer-box">
-        <h2 style="color:var(--main-orange); margin-bottom:10px;">DON'T MISS THE NEXT DROP</h2>
+        <h2 style="color:var(--main-orange);">DON'T MISS THE NEXT DROP</h2>
         <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
         <div class="copyright">© KattoFlicks • ALL RIGHTS RESERVED</div>
     </div>
 </div>
-
 <script>
-    // SECURELY ENCODED DATA (Human-unreadable on GitHub)
     const secureData = [
-        "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", // Server 01
-        "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOmpwMDQwNTA1", // Server 02
-        "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", // Server 03
-        "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", // Server 04
-        "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", // Server 05
-        "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi", // Server 06
-        "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", // Server 07
-        "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=", // Server 08
-        "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", // Server 09
-        "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx", // Server 10
-        "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", // Server 11
-        "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=", // Server 12
-        "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt" // Server 13
+        "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOmpwMDQwNTA1",
+        "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=",
+        "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi",
+        "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=",
+        "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx",
+        "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=",
+        "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt"
     ];
-
     const grid = document.getElementById('vault-grid');
     secureData.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server ${String(index + 1).padStart(2, '0')}</h3>
+        const card = document.createElement('div'); card.className = 'card';
+        card.innerHTML = `<h3 style="margin:0; color:var(--main-orange);">Server ${String(index + 1).padStart(2, '0')}</h3>
             <div class="acc-info" id="acc${index}">********:********</div>
-            <button class="copy-btn" onclick="decodeAndCopy('${item}', 'acc${index}', this)">COPY KEY</button>
-        `;
+            <button class="copy-btn" onclick="decodeAndCopy('${item}', 'acc${index}', this)">COPY KEY</button>`;
         grid.appendChild(card);
     });
-
     function decodeAndCopy(encoded, displayId, btn) {
-        const decoded = atob(encoded); // The "Secret Decoder"
-        navigator.clipboard.writeText(decoded);
-        const oldText = btn.innerText;
+        const decoded = atob(encoded); navigator.clipboard.writeText(decoded);
         btn.innerText = "COPIED!"; btn.style.background = "#00ff88"; btn.style.color = "#000";
-        setTimeout(() => { btn.innerText = oldText; btn.style.background = "#333"; btn.style.color = "#fff"; }, 2000);
+        setTimeout(() => { btn.innerText = "COPY KEY"; btn.style.background = "#333"; btn.style.color = "#fff"; }, 2000);
     }
 </script>
 </body>

@@ -8,16 +8,12 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
     <script>
-        const openDays = [1, 2]; 
+        const openDays = [1, 2]; // Open on 1st and 2nd
         const today = new Date().getDate(); 
-
         setTimeout(() => {
-            if (openDays.includes(today)) {
-                window.location.replace("vault.html");
-            } else {
-                window.location.replace("closed.html");
-            }
-        }, 1500);
+            if (openDays.includes(today)) { window.location.replace("vault.html"); } 
+            else { window.location.replace("closed.html"); }
+        }, 1200);
     </script>
 </head>
 <body>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checking Vault Status...</title>
+    <style>
+        body { background: #0f1014; color: white; font-family: sans-serif; text-align: center; padding-top: 20vh; }
+        .loader { border: 4px solid #333; border-top: 4px solid #FF6400; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    <script>
+        // --- HOW TO CHANGE THE DATES ---
+        // Change the numbers inside the brackets below. 
+        // For example, [1, 2, 15] means the site is open on the 1st, 2nd, and 15th of the month.
+        // [10, 11, 12] means it's open on the 10th, 11th, and 12th.
+        
+        const openDays = [1, 2]; // Currently set to open on the 1st and 2nd.
+
+        // Do not touch the code below! It does the math.
+        const today = new Date().getDate(); 
+
+        setTimeout(() => {
+            if (openDays.includes(today)) {
+                window.location.replace("vault.html"); // Sends them to the accounts
+            } else {
+                window.location.replace("closed.html"); // Sends them to the YouTube promo page
+            }
+        }, 1500); // 1.5 second delay so they see the cool loading screen
+    </script>
+</head>
+<body>
+    <div class="loader"></div>
+    <h2>Accessing secure servers...</h2>
+</body>
+</html>

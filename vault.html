@@ -7,88 +7,44 @@
     <style>
         :root { --main-orange: #FF6400; --dark-bg: #0f1014; --card-bg: #1a1c22; }
         body { background-color: var(--dark-bg); color: #fff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
-        .dashboard { max-width: 1200px; width: 100%; }
-        .header { border-bottom: 2px solid var(--main-orange); margin-bottom: 30px; padding-bottom: 10px; }
-        .header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
-        .header span { color: var(--main-orange); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .dashboard { max-width: 900px; width: 100%; }
+        
+        /* Updated header to hold the button */
+        .header { border-bottom: 2px solid var(--main-orange); margin-bottom: 30px; padding-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .header-text h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
+        .header-text span { color: var(--main-orange); }
+        .header-text p { opacity: 0.6; margin-top: 5px; margin-bottom: 0; font-size: 14px; }
+        
+        /* New YouTube Button Style */
+        .yt-btn { background: #ff0000; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; transition: 0.3s; display: inline-block; letter-spacing: 0.5px; }
+        .yt-btn:hover { background: #cc0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
         .card { background: var(--card-bg); border-radius: 10px; padding: 15px; border: 1px solid #2d2f36; }
-        .acc-info { font-family: monospace; background: #000; padding: 10px; margin-top: 10px; border-radius: 5px; color: #00ff88; word-break: break-all; font-size: 0.9em; }
-        .copy-btn { width: 100%; background: #333; border: none; color: white; padding: 10px; margin-top: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .acc-info { font-family: monospace; background: #000; padding: 10px; margin-top: 10px; border-radius: 5px; color: #00ff88; letter-spacing: 0.5px; }
+        .copy-btn { width: 100%; background: #333; border: none; color: white; padding: 12px; margin-top: 15px; border-radius: 5px; cursor: pointer; font-weight: bold; letter-spacing: 1px; }
         .copy-btn:hover { background: var(--main-orange); }
     </style>
 </head>
 <body>
 <div class="dashboard">
     <div class="header">
-        <h1>PREMIUM<span>VAULT</span></h1>
-        <p style="opacity: 0.6;">Crunchyroll Access Keys • Do Not Change Passwords</p>
+        <div class="header-text">
+            <h1>PREMIUM<span>VAULT</span></h1>
+            <p>Direct Access Keys • Do Not Change Passwords</p>
+        </div>
+        <a href="https://youtube.com/YOUR_CHANNEL" class="yt-btn" target="_blank">📺 SUBSCRIBE</a>
     </div>
     <div class="grid">
         <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 01</h3>
-            <div class="acc-info" id="acc1">juannevesm20@gmail.com:mata0512</div>
+            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 01</h3>
+            <div class="acc-info" id="acc1">user123:password99</div>
             <button class="copy-btn" onclick="copyText('acc1', this)">COPY KEY</button>
         </div>
         <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 02</h3>
-            <div class="acc-info" id="acc2">jehovahpedro04@gmail.com:jp040505</div>
+            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 02</h3>
+            <div class="acc-info" id="acc2">animefan:stream2026</div>
             <button class="copy-btn" onclick="copyText('acc2', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 03</h3>
-            <div class="acc-info" id="acc3">mandi.saxby5113@gmail.com:M3dl0ckM5113</div>
-            <button class="copy-btn" onclick="copyText('acc3', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 04</h3>
-            <div class="acc-info" id="acc4">boninimauro31@gmail.com:Mb2020**</div>
-            <button class="copy-btn" onclick="copyText('acc4', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 05</h3>
-            <div class="acc-info" id="acc5">noemi.alves@icloud.com:alvesnoemi98</div>
-            <button class="copy-btn" onclick="copyText('acc5', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 06</h3>
-            <div class="acc-info" id="acc6">dt573392@gmail.com:lUCa19#b</div>
-            <button class="copy-btn" onclick="copyText('acc6', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 07</h3>
-            <div class="acc-info" id="acc7">bl4z34plh4@gmail.com:mulita12</div>
-            <button class="copy-btn" onclick="copyText('acc7', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 08</h3>
-            <div class="acc-info" id="acc8">rafasz999999@gmail.com:Rafael123</div>
-            <button class="copy-btn" onclick="copyText('acc8', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 09</h3>
-            <div class="acc-info" id="acc9">gatosandia111@yandex.com:egs123</div>
-            <button class="copy-btn" onclick="copyText('acc9', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 10</h3>
-            <div class="acc-info" id="acc10">kouhysugoe@gmail.com:kelven123321</div>
-            <button class="copy-btn" onclick="copyText('acc10', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 11</h3>
-            <div class="acc-info" id="acc11">zion.fowler1@icloud.com:heyheyheyY1</div>
-            <button class="copy-btn" onclick="copyText('acc11', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 12</h3>
-            <div class="acc-info" id="acc12">rhuanbrancoc@gmail.com:rhuan0105</div>
-            <button class="copy-btn" onclick="copyText('acc12', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">CR Server 13</h3>
-            <div class="acc-info" id="acc13">kasemcadams28@gmail.com:5802391123Km</div>
-            <button class="copy-btn" onclick="copyText('acc13', this)">COPY KEY</button>
         </div>
     </div>
 </div>

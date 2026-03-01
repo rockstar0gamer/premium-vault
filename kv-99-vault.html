@@ -21,6 +21,19 @@
     </div>
 
     <script>
+    // SECURITY CHECK: If no random token is found, send them back to the start
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has('token')) {
+        window.location.replace("index.html");
+    }
+
+    // YOUR EXISTING OBFUSCATED DATA
+    const secret = "cHJlbWl1bV91c2VyX2dvbGQ6U2VjcmV0OTk="; 
+    
+    // ... rest of your existing animation code ...
+</script>
+
+    <script>
         const secret = "cHJlbWl1bV91c2VyX2dvbGQ6U2VjcmV0OTk="; // "premium_user_gold:Secret99"
         const keyDisplay = document.getElementById('privateKey');
         const statusText = document.getElementById('status');

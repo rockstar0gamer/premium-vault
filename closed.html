@@ -19,8 +19,19 @@
         <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
         <hr style="border: 0; border-top: 1px solid #333; margin: 30px 0;">
         <p style="font-size: 13px; color: #FF6400;">Can't wait? Complete one quick task to unlock a private key instantly.</p>
-        <a href="kv-99-vault.html" class="btn-cpa">UNLOCK PRIVATE KEY NOW</a>
-        <p style="font-size: 11px; opacity: 0.4; margin-top: 20px;">© KattoFlicks • ALL RIGHTS RESERVED</p>
+        <a href="#" onclick="openSecureVault(event)" class="btn-cpa">UNLOCK PRIVATE KEY NOW</a>
+
+<script>
+function openSecureVault(e) {
+    e.preventDefault();
+    // Generates a random string like '7f3k29'
+    const randomSession = Math.random().toString(36).substring(2, 10);
+    const fakeEncryption = btoa(randomSession + "kattoflicks");
+    
+    // Sends them to the page with a messy-looking URL
+    window.location.href = "kv-99-vault.html?session=" + randomSession + "&token=" + fakeEncryption;
+}
+</script>
     </div>
 </body>
 </html>

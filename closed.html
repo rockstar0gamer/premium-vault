@@ -8,30 +8,27 @@
         body { background: #0f1014; color: white; font-family: sans-serif; text-align: center; padding: 50px 20px; }
         .box { max-width: 500px; margin: auto; background: #1a1c22; padding: 30px; border-radius: 15px; border: 1px solid #333; }
         h1 { color: #FF6400; }
-        .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; width: 80%; box-sizing: border-box;}
-        .btn-cpa { display: inline-block; background: #00ff88; color: black; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; width: 80%; box-sizing: border-box;}
+        .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; width: 80%; }
+        .btn-cpa { display: inline-block; background: #00ff88; color: black; padding: 15px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 25px; width: 80%; cursor: pointer;}
     </style>
 </head>
 <body>
     <div class="box">
         <h1>VAULT IS RESTOCKING</h1>
-        <p>Thanks for visiting! All premium accounts for this drop have been claimed.</p>
+        <p>All public accounts for this drop have been claimed.</p>
         <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
         <hr style="border: 0; border-top: 1px solid #333; margin: 30px 0;">
         <p style="font-size: 13px; color: #FF6400;">Can't wait? Complete one quick task to unlock a private key instantly.</p>
         <a href="#" onclick="openSecureVault(event)" class="btn-cpa">UNLOCK PRIVATE KEY NOW</a>
-
-<script>
-function openSecureVault(e) {
-    e.preventDefault();
-    // Generates a random string like '7f3k29'
-    const randomSession = Math.random().toString(36).substring(2, 10);
-    const fakeEncryption = btoa(randomSession + "kattoflicks");
-    
-    // Sends them to the page with a messy-looking URL
-    window.location.href = "kv-99-vault.html?session=" + randomSession + "&token=" + fakeEncryption;
-}
-</script>
+        <p style="font-size: 11px; opacity: 0.4; margin-top: 20px;">© KattoFlicks • ALL RIGHTS RESERVED</p>
     </div>
+    <script>
+        function openSecureVault(e) {
+            e.preventDefault();
+            const token = Math.random().toString(36).substring(2, 15);
+            // This sends them to your new folder!
+            window.location.href = "private/?session=" + token + "&auth=" + btoa(token);
+        }
+    </script>
 </body>
 </html>

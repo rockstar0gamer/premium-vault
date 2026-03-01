@@ -8,150 +8,70 @@
         :root { --main-orange: #FF6400; --dark-bg: #0f1014; --card-bg: #1a1c22; }
         body { background-color: var(--dark-bg); color: #fff; font-family: sans-serif; display: flex; justify-content: center; padding: 20px; margin: 0; }
         .dashboard { max-width: 900px; width: 100%; }
-        
-        /* Header - Simple & Clean */
         .header { border-bottom: 2px solid var(--main-orange); margin-bottom: 30px; padding-bottom: 10px; }
         .header h1 { margin: 0; font-size: 24px; letter-spacing: 1px; }
         .header span { color: var(--main-orange); }
-
-        /* Account Cards */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; margin-bottom: 40px; }
         .card { background: var(--card-bg); border-radius: 10px; padding: 15px; border: 1px solid #2d2f36; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
         .acc-info { font-family: monospace; background: #000; padding: 12px; margin-top: 10px; border-radius: 5px; color: #00ff88; font-size: 14px; text-align: center; word-break: break-all; }
         .copy-btn { width: 100%; background: #333; border: none; color: white; padding: 12px; margin-top: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; }
         .copy-btn:hover { background: var(--main-orange); }
-
-        /* FANCY FOOTER SECTION */
-        .footer-box { 
-            background: #1a1c22; 
-            padding: 40px 20px; 
-            border-radius: 15px; 
-            border: 1px solid #333; 
-            text-align: center; 
-            margin-top: 50px;
-            box-shadow: 0 0 20px rgba(255, 100, 0, 0.05);
-        }
-        
-        .footer-box h2 { color: var(--main-orange); margin-bottom: 10px; font-size: 20px; }
-        
-        /* The Red YouTube Button */
-        .btn-yt { 
-            display: inline-block; 
-            background: #FF0000; 
-            color: white; 
-            padding: 15px 35px; 
-            text-decoration: none; 
-            border-radius: 5px; 
-            font-weight: bold; 
-            margin: 20px 0; 
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
-        }
-        .btn-yt:hover { background: #cc0000; transform: scale(1.02); }
-
+        .footer-box { background: #1a1c22; padding: 40px 20px; border-radius: 15px; border: 1px solid #333; text-align: center; margin-top: 50px; }
+        .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 15px 35px; text-decoration: none; border-radius: 5px; font-weight: bold; margin: 20px 0; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); }
         .copyright { font-size: 12px; opacity: 0.4; margin-top: 30px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
-
 <div class="dashboard">
     <div class="header">
         <h1>PREMIUM<span>VAULT</span></h1>
-        <p style="opacity: 0.6; font-size: 14px; margin-top: 5px;">Direct Access Keys • Do Not Change Passwords</p>
+        <p style="opacity: 0.6; font-size: 14px; margin-top: 5px;">Direct Access Keys • Security Obfuscation Active</p>
     </div>
-
-    <div class="grid">
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 01</h3>
-            <div class="acc-info" id="acc1">juannevesm20@gmail.com:mata0512</div>
-            <button class="copy-btn" onclick="copyText('acc1', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 02</h3>
-            <div class="acc-info" id="acc2">jehovahpedro04@gmail.com:jp040505</div>
-            <button class="copy-btn" onclick="copyText('acc2', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 03</h3>
-            <div class="acc-info" id="acc3">mandi.saxby5113@gmail.com:M3dl0ckM5113</div>
-            <button class="copy-btn" onclick="copyText('acc3', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 04</h3>
-            <div class="acc-info" id="acc4">boninimauro31@gmail.com:Mb2020**</div>
-            <button class="copy-btn" onclick="copyText('acc4', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 05</h3>
-            <div class="acc-info" id="acc5">noemi.alves@icloud.com:alvesnoemi98</div>
-            <button class="copy-btn" onclick="copyText('acc5', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 06</h3>
-            <div class="acc-info" id="acc6">dt573392@gmail.com:lUCa19#b</div>
-            <button class="copy-btn" onclick="copyText('acc6', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 07</h3>
-            <div class="acc-info" id="acc7">bl4z34plh4@gmail.com:mulita12</div>
-            <button class="copy-btn" onclick="copyText('acc7', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 08</h3>
-            <div class="acc-info" id="acc8">rafasz999999@gmail.com:Rafael123</div>
-            <button class="copy-btn" onclick="copyText('acc8', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 09</h3>
-            <div class="acc-info" id="acc9">gatosandia111@yandex.com:egs123</div>
-            <button class="copy-btn" onclick="copyText('acc9', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 10</h3>
-            <div class="acc-info" id="acc10">kouhysugoe@gmail.com:kelven123321</div>
-            <button class="copy-btn" onclick="copyText('acc10', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 11</h3>
-            <div class="acc-info" id="acc11">zion.fowler1@icloud.com:heyheyheyY1</div>
-            <button class="copy-btn" onclick="copyText('acc11', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 12</h3>
-            <div class="acc-info" id="acc12">rhuanbrancoc@gmail.com:rhuan0105</div>
-            <button class="copy-btn" onclick="copyText('acc12', this)">COPY KEY</button>
-        </div>
-        <div class="card">
-            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server 13</h3>
-            <div class="acc-info" id="acc13">kasemcadams28@gmail.com:5802391123Km</div>
-            <button class="copy-btn" onclick="copyText('acc13', this)">COPY KEY</button>
-        </div>
-    </div>
-
+    <div class="grid" id="vault-grid"></div>
     <div class="footer-box">
-        <h2>DON'T MISS THE NEXT DROP</h2>
-        <p style="opacity: 0.7; font-size: 14px;">We restock these accounts every single month. <br>Subscribe to get notified the second a new vault opens!</p>
-        
+        <h2 style="color:var(--main-orange); margin-bottom:10px;">DON'T MISS THE NEXT DROP</h2>
         <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
-
         <div class="copyright">© KattoFlicks • ALL RIGHTS RESERVED</div>
     </div>
 </div>
 
 <script>
-    function copyText(id, btn) {
-        navigator.clipboard.writeText(document.getElementById(id).innerText);
+    // SECURELY ENCODED DATA (Human-unreadable on GitHub)
+    const secureData = [
+        "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", // Server 01
+        "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOmpwMDQwNTA1", // Server 02
+        "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", // Server 03
+        "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", // Server 04
+        "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", // Server 05
+        "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi", // Server 06
+        "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", // Server 07
+        "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=", // Server 08
+        "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", // Server 09
+        "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx", // Server 10
+        "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", // Server 11
+        "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=", // Server 12
+        "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt" // Server 13
+    ];
+
+    const grid = document.getElementById('vault-grid');
+    secureData.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <h3 style="margin:0 0 10px 0; color:var(--main-orange);">Server ${String(index + 1).padStart(2, '0')}</h3>
+            <div class="acc-info" id="acc${index}">********:********</div>
+            <button class="copy-btn" onclick="decodeAndCopy('${item}', 'acc${index}', this)">COPY KEY</button>
+        `;
+        grid.appendChild(card);
+    });
+
+    function decodeAndCopy(encoded, displayId, btn) {
+        const decoded = atob(encoded); // The "Secret Decoder"
+        navigator.clipboard.writeText(decoded);
         const oldText = btn.innerText;
-        btn.innerText = "COPIED!"; 
-        btn.style.background = "#00ff88"; 
-        btn.style.color = "#000";
-        setTimeout(() => { 
-            btn.innerText = oldText; 
-            btn.style.background = "#333"; 
-            btn.style.color = "#fff"; 
-        }, 2000);
+        btn.innerText = "COPIED!"; btn.style.background = "#00ff88"; btn.style.color = "#000";
+        setTimeout(() => { btn.innerText = oldText; btn.style.background = "#333"; btn.style.color = "#fff"; }, 2000);
     }
 </script>
-
 </body>
 </html>

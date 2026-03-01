@@ -8,23 +8,16 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
     <script>
-        // --- HOW TO CHANGE THE DATES ---
-        // Change the numbers inside the brackets below. 
-        // For example, [1, 2, 15] means the site is open on the 1st, 2nd, and 15th of the month.
-        // [10, 11, 12] means it's open on the 10th, 11th, and 12th.
-        
-        const openDays = [1, 2]; // Currently set to open on the 1st and 2nd.
-
-        // Do not touch the code below! It does the math.
+        const openDays = [1, 2]; 
         const today = new Date().getDate(); 
 
         setTimeout(() => {
             if (openDays.includes(today)) {
-                window.location.replace("vault.html"); // Sends them to the accounts
+                window.location.replace("vault.html");
             } else {
-                window.location.replace("closed.html"); // Sends them to the YouTube promo page
+                window.location.replace("closed.html");
             }
-        }, 1500); // 1.5 second delay so they see the cool loading screen
+        }, 1500);
     </script>
 </head>
 <body>

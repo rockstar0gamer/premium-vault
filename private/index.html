@@ -1,1 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Access</title>
+    <style>
+        body { background: #0f1014; color: #00ff88; font-family: monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; text-align: center;}
+        .box { max-width: 450px; width: 90%; background: #1a1c22; padding: 40px; border-radius: 20px; border: 2px solid #00ff88; }
+        .key-display { background: #000; padding: 25px; border-radius: 10px; font-size: 18px; margin: 20px 0; border: 1px solid rgba(0, 255, 136, 0.3); word-break: break-all; }
+        .copy-btn { width: 100%; background: #00ff88; color: #000; border: none; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; display: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>ACCESS GRANTED</h1>
+        <div id="status">Verifying Session...</div>
+        <div class="key-display" id="privateKey">--------:--------</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyPrivate()">COPY UNIQUE KEY</button>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (!urlParams.has('session')) { window.location.replace("../index.html"); }
 
+        const secret = "cHJlbWl1bV91c2VyX2dvbGQ6U2VjcmV0OTk="; // "premium_user_gold:Secret99"
+        const keyDisplay = document.getElementById('privateKey');
+        const copyBtn = document.getElementById('copyBtn');
+
+        let prog = 0;
+        const inv = setInterval(() => {
+            prog += 4;
+            keyDisplay.innerText = Math.random().toString(36).substring(2, 12);
+            if (prog >= 100) {
+                clearInterval(inv);
+                keyDisplay.innerText = atob(secret);
+                document.getElementById('status').innerText = "AUTHENTICATED";
+                copyBtn.style.display = "block";
+            }
+        }, 80);
+
+        function copyPrivate() {
+            navigator.clipboard.writeText(keyDisplay.innerText);
+            copyBtn.innerText = "COPIED!";
+            setTimeout(() => { copyBtn.innerText = "COPY UNIQUE KEY"; }, 2000);
+        }
+    </script>
+</body>
+</html>

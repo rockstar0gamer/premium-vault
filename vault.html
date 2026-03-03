@@ -19,7 +19,6 @@
         .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 16px 40px; text-decoration: none; border-radius: 14px; font-weight: bold; margin-top: 20px; }
         
-        /* Deterrent UI Styling */
         #deterrent-ui { display: none; height: 100vh; width: 100vw; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #050505; color: var(--danger); font-family: 'Courier New', monospace; padding: 20px; box-sizing: border-box; }
         .warning-box { border: 2px solid var(--danger); padding: 40px; max-width: 500px; background: rgba(255, 0, 60, 0.05); box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); border-radius: 10px; }
         .blink { animation: blinker 0.8s linear infinite; font-size: 50px; margin-bottom: 20px; }
@@ -59,7 +58,6 @@
     (function() {
         const officialDomain = "rockstar0gamer.github.io";
         
-        // 1. Domain Check
         if (!window.location.hostname.includes(officialDomain)) {
             document.getElementById('deterrent-ui').style.display = 'flex';
             setTimeout(() => { 
@@ -68,17 +66,14 @@
             return;
         }
 
-        // 2. Restocking Logic (Currently allows 1st and 2nd of the month)
         const authorizedDays = [1, 2]; 
         if (!authorizedDays.includes(new Date().getDate())) {
             window.location.replace("closed.html");
             return;
         }
 
-        // 3. Show Main UI
         document.getElementById('main-ui').style.display = 'block';
 
-        // 4. Encoded Data (IDs & Passwords)
         const encodedData = [
             "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", 
             "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1", 
@@ -108,7 +103,6 @@
         });
     })();
 
-    // 5. Decode and Copy Function (Keeps text masked on screen)
     function copyAndMask(encoded, btn) {
         const decoded = atob(encoded);
         navigator.clipboard.writeText(decoded);

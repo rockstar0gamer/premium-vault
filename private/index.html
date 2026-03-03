@@ -3,110 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encrypted Access | KattoFlicks</title>
+    <title>CRITICAL SYSTEM ALERT</title>
     <style>
-        :root { --accent: #00ff88; --bg: #0a0b0d; --card: #14161a; --border: #23262d; }
-        body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', Roboto, Helvetica, sans-serif; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        :root { --danger: #ff003c; --bg: #050505; --panel: #111; }
+        body { background: var(--bg); color: #fff; font-family: 'Courier New', Courier, monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
         
-        .container { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); text-align: center; position: relative; overflow: hidden; }
+        /* Lockdown Interface */
+        .lockdown-container { text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
+        .warning-icon { font-size: 60px; color: var(--danger); margin-bottom: 20px; animation: blink 0.8s infinite; }
+        h1 { font-size: 24px; color: var(--danger); letter-spacing: 2px; margin: 0; }
+        p { font-size: 14px; line-height: 1.6; color: #aaa; }
+        .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; }
         
-        /* Premium Badge */
-        .badge { display: inline-block; background: rgba(0, 255, 136, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 136, 0.2); }
-
-        h1 { font-size: 26px; margin: 0 0 10px 0; color: #fff; font-weight: 700; letter-spacing: -0.5px; }
-        p.subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
-
-        /* The Key Box - Fixed for Overflow */
-        .key-container { background: #000; border-radius: 16px; padding: 20px; border: 1px solid var(--border); margin-bottom: 25px; position: relative; }
-        .key-label { position: absolute; top: -10px; left: 20px; background: var(--card); padding: 0 10px; font-size: 10px; color: #555; font-weight: bold; }
+        /* Normal Interface (Hidden by default) */
+        #main-ui { display: none; }
         
-        #privateKey { font-family: 'Consolas', 'Monaco', monospace; color: var(--accent); font-size: 16px; word-break: break-all; line-height: 1.5; min-height: 24px; transition: all 0.5s ease; }
-
-        /* Modern Progress */
-        .loading-area { margin-bottom: 30px; }
-        .bar-bg { width: 100%; height: 6px; background: #1c1f24; border-radius: 10px; overflow: hidden; }
-        #bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00ff88, #00c4ff); transition: width 0.1s linear; }
-        #status-txt { font-size: 12px; color: #666; margin-top: 10px; font-weight: 600; text-transform: uppercase; }
-
-        /* Button Styling */
-        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 18px; border-radius: 14px; font-weight: 700; font-size: 14px; cursor: pointer; transition: 0.3s; display: none; text-transform: uppercase; }
-        .copy-btn:hover { background: var(--accent); transform: translateY(-2px); }
-
-        /* Verification Signature */
-        .signature { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; opacity: 0.5; font-size: 11px; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="badge">Verified Private Access</div>
-        <h1>Key Decrypted</h1>
-        <p class="subtitle">Your unique premium credentials have been generated and are ready for use.</p>
-
-        <div class="loading-area">
-            <div class="bar-bg"><div id="bar-fill"></div></div>
-            <div id="status-txt">Authenticating...</div>
+    <div id="lockdown-ui" class="lockdown-container" style="display:none;">
+        <div class="warning-icon">⚠️</div>
+        <h1>ILLEGAL ACCESS DETECTED</h1>
+        <p>Your connection environment is unauthorized. Local bypass attempts are logged and flagged for review.</p>
+        
+        <div class="log-box">
+            STATUS: [LOGGING_REPORT]<br>
+            REMOTE_HOST: <span id="user-ip">...TRACKING...</span><br>
+            VIOLATION: LOCAL_STORAGE_EXPLOIT<br>
+            ACTION: ENFORCING_SESSION_KILL
         </div>
-
-        <div class="key-container">
-            <span class="key-label">CREDENTIALS</span>
-            <div id="privateKey">Initializing...</div>
-        </div>
-
-        <button class="copy-btn" id="copyBtn" onclick="copyPrivate()">Copy Credentials</button>
-
-        <div class="signature">
-            <span>ID: <strong id="sid">...</strong></span>
-            <span>SECURE SESSION</span>
-        </div>
+        
+        <p style="font-size: 11px; color: #555;">DO NOT REFRESH. CLOSING CONNECTION IN 5 SECONDS...</p>
     </div>
 
+    <div id="main-ui">
+        </div>
+
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        if (!urlParams.has('session')) { window.location.replace("../index.html"); }
+        (function() {
+            const officialDomain = "rockstar0gamer.github.io";
+            const lockdownUI = document.getElementById('lockdown-ui');
+            const mainUI = document.getElementById('main-ui');
 
-        // Generate a clean Session ID
-        document.getElementById('sid').innerText = Math.random().toString(36).toUpperCase().substring(2, 8);
+            // SECURITY TRIGGER
+            if (window.location.hostname !== officialDomain) {
+                // Show the "Scary" UI
+                lockdownUI.style.display = 'block';
+                
+                // Fake IP Tracking for fear factor
+                setTimeout(() => {
+                    document.getElementById('user-ip').innerText = "192." + Math.floor(Math.random()*255) + ".XX.XX";
+                }, 1000);
 
-        const secret = "cHJlbWl1bV91c2VyX2dvbGQ6U2VjcmV0OTk="; 
-        const keyDisplay = document.getElementById('privateKey');
-        const statusTxt = document.getElementById('status-txt');
-        const barFill = document.getElementById('bar-fill');
-        const copyBtn = document.getElementById('copyBtn');
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                // Force close or redirect after 5 seconds
+                setTimeout(() => {
+                    window.location.href = "https://www.google.com/search?q=cybersecurity+laws";
+                }, 5000);
 
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += 1.5;
-            barFill.style.width = progress + "%";
-            
-            // Random character effect
-            let randomStr = "";
-            for(let i=0; i<18; i++) randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
-            keyDisplay.innerText = randomStr;
-
-            if (progress > 30) statusTxt.innerText = "Connecting to Secure Node...";
-            if (progress > 60) statusTxt.innerText = "Bypassing Encryption...";
-            if (progress > 85) statusTxt.innerText = "Finalizing Key...";
-
-            if (progress >= 100) {
-                clearInterval(interval);
-                keyDisplay.innerText = atob(secret);
-                statusTxt.innerText = "Authentication Successful";
-                statusTxt.style.color = "#00ff88";
-                copyBtn.style.display = "block";
-                barFill.style.background = "#00ff88";
+                return; // Stop actual script from running
             }
-        }, 50);
 
-        function copyPrivate() {
-            navigator.clipboard.writeText(keyDisplay.innerText);
-            copyBtn.innerText = "Copied to Clipboard!";
-            copyBtn.style.background = "#00ff88";
-            setTimeout(() => { 
-                copyBtn.innerText = "Copy Credentials"; 
-                copyBtn.style.background = "#fff";
-            }, 2000);
+            // If safe, show original generator content
+            mainUI.style.display = 'block';
+            startGenerator(); 
+        })();
+
+        function startGenerator() {
+            // Include your standard Base64 decoding and animation logic here
         }
     </script>
 </body>

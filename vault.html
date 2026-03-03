@@ -42,18 +42,57 @@
     </div>
 </div>
 <script>
-    const accounts = ["juannevesm20@gmail.com:mata0512", "jehovahpedro04@gmail.com:jp040505", "mandi.saxby5113@gmail.com:M3dl0ckM5113", "boninimauro31@gmail.com:Mb2020**", "noemi.alves@icloud.com:alvesnoemi98", "dt573392@gmail.com:lUCa19#b", "bl4z34plh4@gmail.com:mulita12", "rafasz999999@gmail.com:Rafael123", "gatosandia111@yandex.com:egs123", "kouhysugoe@gmail.com:kelven123321", "zion.fowler1@icloud.com:heyheyheyY1", "rhuanbrancoc@gmail.com:rhuan0105", "kasemcadams28@gmail.com:5802391123Km"];
+    // --- THE SECURITY SHIELD ---
+    // This must match the dates in your index.html
+    const authorizedDays = [1, 2]; 
+    const currentDay = new Date().getDate();
+
+    // If the user tries to visit this URL on a wrong day, kick them out
+    if (!authorizedDays.includes(currentDay)) {
+        window.location.replace("closed.html");
+    }
+
+    // --- YOUR ACCOUNT DATA ---
+    const accounts = [
+        "juannevesm20@gmail.com:mata0512", 
+        "jehovahpedro04@gmail.com:jp040505", 
+        "mandi.saxby5113@gmail.com:M3dl0ckM5113", 
+        "boninimauro31@gmail.com:Mb2020**", 
+        "noemi.alves@icloud.com:alvesnoemi98", 
+        "dt573392@gmail.com:lUCa19#b", 
+        "bl4z34plh4@gmail.com:mulita12", 
+        "rafasz999999@gmail.com:Rafael123", 
+        "gatosandia111@yandex.com:egs123", 
+        "kouhysugoe@gmail.com:kelven123321", 
+        "zion.fowler1@icloud.com:heyheyheyY1", 
+        "rhuanbrancoc@gmail.com:rhuan0105", 
+        "kasemcadams28@gmail.com:5802391123Km"
+    ];
+
     const grid = document.getElementById('main-grid');
+
+    // Generate the cards
     accounts.forEach((acc, i) => {
-        const div = document.createElement('div'); div.className = 'card';
-        div.innerHTML = `<h3>Server Node ${String(i+1).padStart(2, '0')}</h3><div class="acc-info" id="acc${i}">${acc}</div><button class="copy-btn" onclick="copyIt('acc${i}', this)">Copy Key</button>`;
+        const div = document.createElement('div'); 
+        div.className = 'card';
+        div.innerHTML = `
+            <h3>Server Node ${String(i+1).padStart(2, '0')}</h3>
+            <div class=\"acc-info\" id=\"acc${i}\">${acc}</div>
+            <button class=\"copy-btn\" onclick=\"copyIt('acc${i}', this)\">Copy Key</button>
+        `;
         grid.appendChild(div);
     });
+
     function copyIt(id, b) {
         navigator.clipboard.writeText(document.getElementById(id).innerText);
-        b.innerText = "Copied!"; b.style.background = "#00ff88";
-        setTimeout(() => { b.innerText = "Copy Key"; b.style.background = "#fff"; }, 2000);
+        b.innerText = "Copied!"; 
+        b.style.background = "#00ff88";
+        setTimeout(() => { 
+            b.innerText = "Copy Key"; 
+            b.style.background = "#fff"; 
+        }, 2000);
     }
 </script>
+
 </body>
 </html>

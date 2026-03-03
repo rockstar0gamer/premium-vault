@@ -15,8 +15,8 @@
         h1 span { color: var(--accent); }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
         .card { background: var(--card); border-radius: 20px; padding: 25px; border: 1px solid var(--border); }
-        .acc-info { background: #000; padding: 15px; border-radius: 12px; font-family: 'Courier New', monospace; color: var(--green); font-size: 14px; text-align: center; word-break: break-all; margin: 15px 0; border: 1px solid #1c1f24; }
-        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+        .acc-info { background: #000; padding: 15px; border-radius: 12px; font-family: 'Courier New', monospace; color: var(--green); font-size: 14px; text-align: center; word-break: break-all; margin: 15px 0; border: 1px solid #1c1f24; letter-spacing: 2px; }
+        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s; }
         .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 16px 40px; text-decoration: none; border-radius: 14px; font-weight: bold; margin-top: 20px; }
         
         /* Deterrent UI Styling */
@@ -50,7 +50,7 @@
             <div class="grid" id="main-grid"></div>
             <div style="text-align:center; padding: 60px 0;">
                 <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
-                <p style="font-size: 11px; opacity: 0.3; margin-top: 30px;">© KattoFlicks • All Rights Reserved</p>
+                <p style="font-size: 11px; opacity: 0.3; margin-top: 30px;">© KattoFlicks • SECURE ASSETS</p>
             </div>
         </div>
     </div>
@@ -59,47 +59,68 @@
     (function() {
         const officialDomain = "rockstar0gamer.github.io";
         
-        // Domain Check
+        // 1. Domain Check
         if (!window.location.hostname.includes(officialDomain)) {
             document.getElementById('deterrent-ui').style.display = 'flex';
-            
-            // Added Interpol Redirect
             setTimeout(() => { 
                 window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; 
             }, 5000);
             return;
         }
 
-        // Restocking Logic
-        const authorizedDays = [1, 2]; 
+        // 2. Restocking Logic (Currently allows 1st and 2nd of the month)
+        const authorizedDays = [1, 2, 3]; 
         if (!authorizedDays.includes(new Date().getDate())) {
             window.location.replace("closed.html");
             return;
         }
 
-        // Show Main UI
+        // 3. Show Main UI
         document.getElementById('main-ui').style.display = 'block';
+
+        // 4. Encoded Data (IDs & Passwords)
         const encodedData = [
             "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", 
             "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1", 
             "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", 
             "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", 
-            "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg="
+            "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=",
+            "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi",
+            "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=",
+            "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=",
+            "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==",
+            "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx",
+            "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=",
+            "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=",
+            "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt"
         ];
 
         const grid = document.getElementById('main-grid');
         encodedData.forEach((enc, i) => {
             const div = document.createElement('div');
             div.className = 'card';
-            div.innerHTML = `<h3>Server Node ${String(i+1).padStart(2, '0')}</h3><div class=\"acc-info\" id=\"acc${i}\">${atob(enc)}</div><button class=\"copy-btn\" onclick=\"copyIt('acc${i}', this)\">Copy Key</button>`;
+            div.innerHTML = `
+                <h3>Server Node ${String(i+1).padStart(2, '0')}</h3>
+                <div class="acc-info">********:********</div>
+                <button class="copy-btn" onclick="copyAndMask('${enc}', this)">COPY KEY</button>
+            `;
             grid.appendChild(div);
         });
     })();
 
-    function copyIt(id, b) {
-        navigator.clipboard.writeText(document.getElementById(id).innerText);
-        b.innerText = "Copied!"; b.style.background = "#00ff88";
-        setTimeout(() => { b.innerText = "Copy Key"; b.style.background = "#fff"; }, 2000);
+    // 5. Decode and Copy Function (Keeps text masked on screen)
+    function copyAndMask(encoded, btn) {
+        const decoded = atob(encoded);
+        navigator.clipboard.writeText(decoded);
+        
+        const originalText = btn.innerText;
+        btn.innerText = "COPIED!";
+        btn.style.background = "#00ff88";
+        
+        setTimeout(() => {
+            btn.innerText = originalText;
+            btn.style.background = "#fff";
+        }, 2000);
     }
 </script>
 </body>

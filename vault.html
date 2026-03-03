@@ -71,7 +71,7 @@
         }
 
         // Restocking Logic
-        const authorizedDays = [1, 2, 3]; 
+        const authorizedDays = [1, 2]; 
         if (!authorizedDays.includes(new Date().getDate())) {
             window.location.replace("closed.html");
             return;

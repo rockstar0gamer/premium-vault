@@ -3,7 +3,9 @@
 # 🌌 KattoFlicks Premium Vault 🌌
 **Secure • Exclusive • High-Speed Decryption**
 
-<img src="https://img.shields.io/youtube/channel/subscribers/UC0MYZiRiv786h7TY?style=for-the-badge&label=JOIN%20THE%20ELITE&color=red" alt="Subscribers">
+<img src="https://img.shields.io/youtube/channel/subscribers/UC0MYZiRiv786h7TY?style=for-the-<a href="https://youtube.com/@kattoflicks">
+  <img src="https://img.shields.io/badge/YOUTUBE-JOIN%20THE%20ELITE-red?style=for-the-badge&logo=youtube" alt="YouTube">
+</a>
 <img src="https://img.shields.io/badge/SECURITY-HARDENED-black?style=for-the-badge&logo=eset" alt="Security">
 <img src="https://img.shields.io/badge/CRUNCHYROLL-ACTIVE-orange?style=for-the-badge&logo=crunchyroll" alt="Anime">
 

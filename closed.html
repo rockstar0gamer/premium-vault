@@ -3,30 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vault Closed</title>
+    <title>Restocking Vault</title>
     <style>
-        body { background: #0f1014; color: white; font-family: sans-serif; text-align: center; padding: 50px 20px; }
-        .box { max-width: 500px; margin: auto; background: #1a1c22; padding: 30px; border-radius: 15px; border: 1px solid #333; }
-        h1 { color: #FF6400; }
-        .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 15px; width: 80%; }
-        .btn-cpa { display: inline-block; background: #00ff88; color: black; padding: 15px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 25px; width: 80%; cursor: pointer;}
+        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        .container { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 50px 30px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; border: 1px solid rgba(255, 100, 0, 0.2); }
+        h1 { font-size: 26px; margin: 0 0 15px 0; font-weight: 700; }
+        p { color: #888; font-size: 15px; line-height: 1.6; margin-bottom: 35px; }
+        .btn-yt { display: block; background: #FF0000; color: #fff; text-decoration: none; padding: 18px; border-radius: 14px; font-weight: 700; margin-bottom: 15px; transition: 0.3s; }
+        .btn-unlock { display: block; background: var(--green); color: #000; text-decoration: none; padding: 18px; border-radius: 14px; font-weight: 700; transition: 0.3s; }
+        .divider { height: 1px; background: var(--border); margin: 30px 0; }
+        .sub-txt { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>VAULT IS RESTOCKING</h1>
-        <p>All public accounts for this drop have been claimed.</p>
+    <div class="container">
+        <div class="badge">Supply Depleted</div>
+        <h1>Vault is Restocking</h1>
+        <p>All current public assets have been distributed. Our next drop is currently being synchronized.</p>
+        
         <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 30px 0;">
-        <p style="font-size: 13px; color: #FF6400;">Can't wait? Complete one quick task to unlock a private key instantly.</p>
-        <a href="#" onclick="openSecureVault(event)" class="btn-cpa">UNLOCK PRIVATE KEY NOW</a>
-        <p style="font-size: 11px; opacity: 0.4; margin-top: 20px;">© KattoFlicks • ALL RIGHTS RESERVED</p>
+        
+        <div class="divider"></div>
+        
+        <div class="sub-txt">Need Instant Access?</div>
+        <a href="#" onclick="openSecureVault(event)" class="btn-unlock">UNLOCK PRIVATE KEY NOW</a>
     </div>
     <script>
         function openSecureVault(e) {
             e.preventDefault();
-            const token = Math.random().toString(36).substring(2, 15);
-            // This sends them to your new folder!
+            const token = Math.random().toString(36).substring(2, 12);
             window.location.href = "private/?session=" + token + "&auth=" + btoa(token);
         }
     </script>

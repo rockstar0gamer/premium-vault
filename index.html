@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Establishing Connection | KattoFlicks</title>
+    <style>
+        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { width: 90%; max-width: 400px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px; text-align: center; }
+        .loader { border: 3px solid rgba(255, 100, 0, 0.1); border-top: 3px solid var(--accent); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 25px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="loader"></div>
+        <h2 style="color:var(--accent); font-size:18px; letter-spacing:1px;">SECURE ACCESS</h2>
+        <p style="color:#666; font-size:12px;">Verifying encrypted session...</p>
+    </div>
+    <script>
+        const openDays = [1, 2, 3]; 
+        const today = new Date().getDate(); 
+        setTimeout(() => {
+            if (openDays.includes(today)) { window.location.href = "vault.html"; } 
+            else { window.location.href = "closed.html"; }
+        }, 1500);
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Dashboard | Secure Node</title>
+    <style>
+        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; --danger: #ff003c; }
+        body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; min-height: 100vh; }
+        #main-ui { display: none; padding: 20px; }
+        .wrapper { max-width: 1000px; margin: 0 auto; }
+        .header { text-align: center; padding: 40px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 15px; }
+        h1 { font-size: 32px; margin: 0; color: #fff; letter-spacing: 2px; }
+        h1 span { color: var(--accent); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: var(--card); border-radius: 20px; padding: 25px; border: 1px solid var(--border); }
+        .acc-info { background: #000; padding: 15px; border-radius: 12px; font-family: 'Courier New', monospace; color: var(--green); font-size: 14px; text-align: center; word-break: break-all; margin: 15px 0; border: 1px solid #1c1f24; }
+        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+        .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 16px 40px; text-decoration: none; border-radius: 14px; font-weight: bold; margin-top: 20px; }
+        
+        /* Deterrent UI Styling */
+        #deterrent-ui { display: none; height: 100vh; width: 100vw; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #050505; color: var(--danger); font-family: 'Courier New', monospace; padding: 20px; box-sizing: border-box; }
+        .warning-box { border: 2px solid var(--danger); padding: 40px; max-width: 500px; background: rgba(255, 0, 60, 0.05); box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); border-radius: 10px; }
+        .blink { animation: blinker 0.8s linear infinite; font-size: 50px; margin-bottom: 20px; }
+        @keyframes blinker { 50% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="deterrent-ui">
+        <div class="warning-box">
+            <div class="blink">⚠️</div>
+            <h2 style="letter-spacing: 2px;">ILLEGAL ACCESS DETECTED</h2>
+            <p style="color:#aaa; font-size:14px;">Unauthorized local connection detected. Your device metadata and IP have been flagged for administrative review.</p>
+            <div style="background:#000; padding:15px; font-size:11px; text-align:left; border-left:3px solid var(--danger); margin:20px 0;">
+                STATUS: [REPORTING_VIOLATION]<br>
+                VIOLATION: LOCAL_FILE_EXPLOIT<br>
+                ACTION: ENFORCING_LOCKDOWN
+            </div>
+            <p style="font-size: 11px; color: #444;">DISCONNECTING AND REDIRECTING IN 5 SECONDS...</p>
+        </div>
+    </div>
+
+    <div id="main-ui">
+        <div class="wrapper">
+            <div class="header">
+                <div class="badge">Live Server Status: Online</div>
+                <h1>PREMIUM<span>VAULT</span></h1>
+            </div>
+            <div class="grid" id="main-grid"></div>
+            <div style="text-align:center; padding: 60px 0;">
+                <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
+                <p style="font-size: 11px; opacity: 0.3; margin-top: 30px;">© KattoFlicks • SECURE ASSETS</p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    (function() {
+        const officialDomain = "rockstar0gamer.github.io";
+        
+        // Domain Check
+        if (!window.location.hostname.includes(officialDomain)) {
+            document.getElementById('deterrent-ui').style.display = 'flex';
+            
+            // Added Interpol Redirect
+            setTimeout(() => { 
+                window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; 
+            }, 5000);
+            return;
+        }
+
+        // Restocking Logic
+        const authorizedDays = [1, 2, 3]; 
+        if (!authorizedDays.includes(new Date().getDate())) {
+            window.location.replace("closed.html");
+            return;
+        }
+
+        // Show Main UI
+        document.getElementById('main-ui').style.display = 'block';
+        const encodedData = [
+            "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", 
+            "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1", 
+            "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", 
+            "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", 
+            "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg="
+        ];
+
+        const grid = document.getElementById('main-grid');
+        encodedData.forEach((enc, i) => {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `<h3>Server Node ${String(i+1).padStart(2, '0')}</h3><div class=\"acc-info\" id=\"acc${i}\">${atob(enc)}</div><button class=\"copy-btn\" onclick=\"copyIt('acc${i}', this)\">Copy Key</button>`;
+            grid.appendChild(div);
+        });
+    })();
+
+    function copyIt(id, b) {
+        navigator.clipboard.writeText(document.getElementById(id).innerText);
+        b.innerText = "Copied!"; b.style.background = "#00ff88";
+        setTimeout(() => { b.innerText = "Copy Key"; b.style.background = "#fff"; }, 2000);
+    }
+</script>
+</body>
+</html>

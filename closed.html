@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Restocking | KattoFlicks</title>
+    <style>
+        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        .container { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 50px 30px; text-align: center; }
+        .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 50px; text-transform: uppercase; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 25px; }
+        h1 { font-size: 34px; line-height: 1.1; margin-bottom: 20px; font-weight: 800; color: var(--accent); }
+        .btn-yt { display: block; background: #FF0000; color: #fff; padding: 18px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 15px; }
+        .btn-unlock { display: block; background: var(--green); color: #000; padding: 18px; border-radius: 16px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="badge">Restock in Progress</div>
+        <h1>VAULT IS RESTOCKING</h1>
+        <p style="color:#888; margin-bottom: 40px;">All public accounts for this drop have been claimed. Subscribe for the next notification.</p>
+        <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
+        <button class="btn-unlock" onclick="unlockPrivate()">UNLOCK PRIVATE KEY NOW</button>
+        <p style="font-size: 11px; color: #444; margin-top: 30px;">© KattoFlicks • SECURE SESSION</p>
+    </div>
+    <script>
+        function unlockPrivate() {
+            const session = Math.random().toString(36).substring(7);
+            window.location.href = "private/index.html?session=" + session;
+        }
+    </script>
+</body>
+</html>

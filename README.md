@@ -3,7 +3,7 @@
 # 🌌 KattoFlicks Premium Vault 🌌
 **Secure • Exclusive • High-Speed Decryption**
 
-<img src="https://img.shields.io/youtube/UC5VOU7AzRetOKA_Bh8ICqHw?style=for-the-badge&label=JOIN%20THE%20ELITE&color=red" alt="Subscribers">
+<img src="https://img.shields.io/youtube/channel/subscribers/UC0MYZiRiv786h7TY?style=for-the-badge&label=JOIN%20THE%20ELITE&color=red" alt="Subscribers">
 <img src="https://img.shields.io/badge/SECURITY-HARDENED-black?style=for-the-badge&logo=eset" alt="Security">
 <img src="https://img.shields.io/badge/CRUNCHYROLL-ACTIVE-orange?style=for-the-badge&logo=crunchyroll" alt="Anime">
 
@@ -24,7 +24,7 @@ This vault utilizes a **Double-Lock Architecture** to protect premium Crunchyrol
 | Component | Security Level | Function |
 | :--- | :--- | :--- |
 | **Public Gateway** | `Standard` | Public restock notification & YouTube verify. |
-| **Private Node** | `Encrypted` | 100-character scramble decryption for keys. |
+| **Private Node** | `Encrypted` | 18-character scramble decryption for keys. |
 | **Deterrent Layer** | `Critical` | Auto-trace & Interpol redirect for local leaks. |
 
 ---

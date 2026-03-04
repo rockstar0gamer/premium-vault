@@ -3,77 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encrypted Access | KattoFlicks</title>
+    <title>Vault Restocking | KattoFlicks</title>
     <style>
-        :root { --accent: #00ff88; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --danger: #ff003c; }
-        body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; overflow: hidden; }
-        #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); z-index: 9999; }
-        .warning-icon { font-size: 60px; color: var(--danger); margin-bottom: 20px; animation: blink 0.8s infinite; }
-        .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .container { display: none; width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px; text-align: center; position: relative; }
-        .badge { display: inline-block; background: rgba(0, 255, 136, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 136, 0.2); }
-        h1 { font-size: 26px; margin: 0 0 10px 0; color: #fff; font-weight: 700; }
-        .key-container { background: #000; border-radius: 16px; padding: 20px; border: 1px solid var(--border); margin-bottom: 25px; position: relative; }
-        #privateKey { font-family: 'Consolas', monospace; color: var(--accent); font-size: 16px; word-break: break-all; min-height: 24px; letter-spacing: 2px; }
-        .bar-bg { width: 100%; height: 6px; background: #1c1f24; border-radius: 10px; overflow: hidden; }
-        #bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00ff88, #00c4ff); transition: width 0.1s linear; }
-        #status-txt { font-size: 12px; color: #666; margin-top: 10px; font-weight: 600; text-transform: uppercase; }
-        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 18px; border-radius: 14px; font-weight: 700; cursor: pointer; display: none; transition: 0.3s; }
-        .footer { margin-top: 30px; font-size: 11px; color: #444; letter-spacing: 1px; }
+        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        .container { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 50px 30px; text-align: center; }
+        .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 50px; text-transform: uppercase; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 25px; }
+        h1 { font-size: 34px; line-height: 1.1; margin-bottom: 20px; font-weight: 800; color: var(--accent); }
+        .btn-yt { display: block; background: #FF0000; color: #fff; padding: 18px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 15px; }
+        .btn-unlock { display: block; background: var(--green); color: #000; padding: 18px; border-radius: 16px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-size: 16px; }
     </style>
 </head>
 <body>
-    <div id="lockdown-ui">
-        <div class="warning-icon">⚠️</div>
-        <h1>ILLEGAL ACCESS DETECTED</h1>
-        <div class="log-box">ACTION: ENFORCING_SESSION_KILL</div>
+    <div class="container">
+        <div class="badge">Restock in Progress</div>
+        <h1>VAULT IS RESTOCKING</h1>
+        <p style="color:#888; margin-bottom: 40px;">Subscribe for the next notification.</p>
+        <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
+        <button class="btn-unlock" onclick="unlockPrivate()">UNLOCK PRIVATE KEY NOW</button>
+        <p style="font-size: 11px; color: #444; margin-top: 30px;">© 2026 KattoFlicks • All Rights Reserved</p>
     </div>
-
-    <div class="container" id="main-content">
-        <div class="badge">Verified Private Access</div>
-        <h1>Key Decrypted</h1>
-        <div style="margin-bottom: 30px;"><div class="bar-bg"><div id="bar-fill"></div></div><div id="status-txt">Authenticating...</div></div>
-        <div class="key-container"><div id="privateKey">Initializing...</div></div>
-        <button class="copy-btn" id="copyBtn" onclick="copyPrivate()">Copy Credentials</button>
-        <div class="footer">© 2026 KattoFlicks • All Rights Reserved</div>
-    </div>
-
     <script>
-        const secret = "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==";
-        (function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const session = urlParams.get('session');
-            const validToken = "katto_private_99";
-            const officialDomain = "rockstar0gamer.github.io";
-
-            if (!window.location.hostname.includes(officialDomain) || !session || atob(session) !== validToken) {
-                document.getElementById('lockdown-ui').style.display = 'block';
-                setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
-                return;
-            }
-            // ANTI-TRICKER
-            setInterval(function() { debugger; }, 1000);
-            document.addEventListener('contextmenu', e => e.preventDefault());
-            document.getElementById('main-content').style.display = 'block';
-            startGenerator();
-        })();
-
-        function startGenerator() {
-            const keyDisplay = document.getElementById('privateKey');
-            const barFill = document.getElementById('bar-fill');
-            const copyBtn = document.getElementById('copyBtn');
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 2; barFill.style.width = progress + "%";
-                keyDisplay.innerText = Math.random().toString(36).substring(2, 10).toUpperCase();
-                if (progress >= 100) { clearInterval(interval); keyDisplay.innerText = "********:********"; copyBtn.style.display = "block"; }
-            }, 50);
-        }
-
-        function copyPrivate() {
-            navigator.clipboard.writeText(atob(secret));
-            document.getElementById('copyBtn').innerText = "Copied!";
+        (function(_0x1b2f,_0x4c2b){const _0x3a12=function(_0x2d17){while(--_0x2d17){_0x1b2f['push'](_0x1b2f['shift']());}};_0x3a12(++_0x4c2b);}(_0x1a2b,0x1b4));function _0x2b1a(_0x1a2b,_0x3a12){const _0x2b1a=_0x1a2b();return _0x2b1a;}const _0x1a2b=['btoa','location','href','private/index.html?session=','katto_private_99'];
+        setInterval(function() { debugger; }, 1000);
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        function unlockPrivate() {
+            window[_0x1a2b[1]][_0x1a2b[2]] = _0x1a2b[3] + window[_0x1a2b[0]](_0x1a2b[4]);
         }
     </script>
 </body>

@@ -3,32 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vault Restocking | KattoFlicks</title>
+    <title>Encrypted Access | KattoFlicks</title>
     <style>
-        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; }
-        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
-        .container { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 50px 30px; text-align: center; }
-        .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 50px; text-transform: uppercase; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 25px; }
-        h1 { font-size: 34px; line-height: 1.1; margin-bottom: 20px; font-weight: 800; color: var(--accent); }
-        .btn-yt { display: block; background: #FF0000; color: #fff; padding: 18px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 15px; }
-        .btn-unlock { display: block; background: var(--green); color: #000; padding: 18px; border-radius: 16px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-size: 16px; }
+        :root { --accent: #00ff88; --bg: #0a0b0d; --card: #14161a; --border: #23262d; }
+        body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; }
+        .container { display: none; width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px; text-align: center; }
+        .bar-bg { width: 100%; height: 6px; background: #1c1f24; border-radius: 10px; overflow: hidden; margin-bottom: 20px; }
+        #bar-fill { width: 0%; height: 100%; background: var(--accent); transition: width 0.1s linear; }
+        #privateKey { font-family: monospace; color: var(--accent); font-size: 18px; margin: 20px 0; }
+        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 18px; border-radius: 14px; font-weight: 700; cursor: pointer; display: none; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="badge">Restock in Progress</div>
-        <h1>VAULT IS RESTOCKING</h1>
-        <p style="color:#888; margin-bottom: 40px;">Subscribe for the next notification.</p>
-        <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
-        <button class="btn-unlock" onclick="unlockPrivate()">UNLOCK PRIVATE KEY NOW</button>
-        <p style="font-size: 11px; color: #444; margin-top: 30px;">© 2026 KattoFlicks • All Rights Reserved</p>
+    <div id="lockdown-ui" style="display:none; color:red;"><h1>ACCESS DENIED</h1></div>
+    <div class="container" id="main-content">
+        <h1>Decrypting Node...</h1>
+        <div class="bar-bg"><div id="bar-fill"></div></div>
+        <div id="privateKey">Initializing...</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyPrivate()">Copy Credentials</button>
     </div>
     <script>
-        (function(_0x1b2f,_0x4c2b){const _0x3a12=function(_0x2d17){while(--_0x2d17){_0x1b2f['push'](_0x1b2f['shift']());}};_0x3a12(++_0x4c2b);}(_0x1a2b,0x1b4));function _0x2b1a(_0x1a2b,_0x3a12){const _0x2b1a=_0x1a2b();return _0x2b1a;}const _0x1a2b=['btoa','location','href','private/index.html?session=','katto_private_99'];
-        setInterval(function() { debugger; }, 1000);
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        function unlockPrivate() {
-            window[_0x1a2b[1]][_0x1a2b[2]] = _0x1a2b[3] + window[_0x1a2b[0]](_0x1a2b[4]);
+        const _0x6a12 = ['atob','location','hostname','search','get','katto_private_99','rockstar0gamer.github.io','href','display','block'];
+        
+        (function() {
+            const _0xparams = new URLSearchParams(window[_0x6a12[1]][_0x6a12[3]]);
+            const _0xsession = _0xparams[_0x6a12[4]]('session');
+            
+            if (!window[_0x6a12[1]][_0x6a12[2]]['includes'](_0x6a12[6]) || !_0xsession || window[_0x6a12[0]](_0xsession) !== _0x6a12[5]) {
+                document.getElementById('lockdown-ui').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('main-content').style.display = 'block';
+            _0xstart();
+        })();
+
+        function _0xstart() {
+            let _0xp = 0;
+            const _0xi = setInterval(() => {
+                _0xp += 2;
+                document.getElementById('bar-fill').style.width = _0xp + '%';
+                document.getElementById('privateKey').innerText = Math.random().toString(36).substring(7).toUpperCase();
+                if (_0xp >= 100) {
+                    clearInterval(_0xi);
+                    document.getElementById('privateKey').innerText = "NODE_01_DECRYPTED";
+                    document.getElementById('copyBtn').style.display = 'block';
+                }
+            }, 60);
+        }
+
+        function copyPrivate() {
+            navigator.clipboard.writeText(window.atob("anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg=="));
+            alert("Credentials Copied!");
         }
     </script>
 </body>

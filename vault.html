@@ -1,0 +1,41 @@
+<script>
+    (function() {
+        // --- ACTIVE DEFENSE: ANTI-TRICKER ---
+        setInterval(function() {
+            const before = new Date().getTime();
+            debugger; 
+            const after = new Date().getTime();
+            if (after - before > 100) { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }
+        }, 1000);
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74)) || (e.ctrlKey && e.keyCode == 85)) return false;
+        };
+
+        // --- DOMAIN & DATE SECURITY ---
+        const officialDomain = "rockstar0gamer.github.io";
+        if (!window.location.hostname.includes(officialDomain)) {
+            document.getElementById('deterrent-ui').style.display = 'flex';
+            setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
+            return;
+        }
+        if (![1, 2, 3].includes(new Date().getDate())) { window.location.replace("closed.html"); return; }
+        document.getElementById('main-ui').style.display = 'block';
+
+        // --- RENDER MASKED GRID ---
+        const encodedData = ["anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1", "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi", "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=", "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx", "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=", "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt"];
+        const grid = document.getElementById('main-grid');
+        encodedData.forEach((enc, i) => {
+            const div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `<h3>Server Node ${String(i+1).padStart(2, '0')}</h3><div class="acc-info">********:********</div><button class="copy-btn" onclick="copyAndMask('${enc}', this)">COPY KEY</button>`;
+            grid.appendChild(div);
+        });
+    })();
+
+    function copyAndMask(encoded, btn) {
+        navigator.clipboard.writeText(atob(encoded));
+        btn.innerText = "COPIED!"; btn.style.background = "#00ff88";
+        setTimeout(() => { btn.innerText = "COPY KEY"; btn.style.background = "#fff"; }, 2000);
+    }
+</script>

@@ -1,0 +1,9 @@
+<script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    const openDays = [1, 2, 3]; 
+    const today = new Date().getDate(); 
+    setTimeout(() => {
+        if (openDays.includes(today)) { window.location.href = "vault.html"; } 
+        else { window.location.href = "closed.html"; }
+    }, 1500);
+</script>

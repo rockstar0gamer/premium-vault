@@ -25,25 +25,10 @@
     </style>
 </head>
 <body>
-    <div id="deterrent-ui">
-        <div class="warning-box">
-            <div class="blink">⚠️</div>
-            <h2 style="letter-spacing: 2px;">ILLEGAL ACCESS DETECTED</h2>
-            <p style="color:#aaa; font-size:14px;">Unauthorized connection environment. Local bypass attempts are logged and flagged.</p>
-            <div style="background:#000; padding:15px; font-size:11px; text-align:left; border-left:3px solid var(--danger); margin:20px 0;">
-                STATUS: [REPORTING_VIOLATION]<br>
-                ACTION: ENFORCING_LOCKDOWN
-            </div>
-            <p style="font-size: 11px; color: #444;">DISCONNECTING AND REDIRECTING IN 5 SECONDS...</p>
-        </div>
-    </div>
-
+    <div id="deterrent-ui"><div class="warning-box"><div class="blink">⚠️</div><h2>ILLEGAL ACCESS DETECTED</h2><p>Unauthorized connection environment.</p><p style="font-size: 11px; color: #444;">DISCONNECTING...</p></div></div>
     <div id="main-ui">
         <div class="wrapper">
-            <div class="header">
-                <div class="badge">Live Server Status: Online</div>
-                <h1>PREMIUM<span>VAULT</span></h1>
-            </div>
+            <div class="header"><div class="badge">Live Server Status: Online</div><h1>PREMIUM<span>VAULT</span></h1></div>
             <div class="grid" id="main-grid"></div>
             <div style="text-align:center; padding: 60px 0;">
                 <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
@@ -51,48 +36,32 @@
             </div>
         </div>
     </div>
-
 <script>
+    (function(_0x1b2f,_0x4c2b){const _0x3a12=function(_0x2d17){while(--_0x2d17){_0x1b2f['push'](_0x1b2f['shift']());}};_0x3a12(++_0x4c2b);}(_0x1a2b,0x1f4));const _0x5a12=['atob','location','hostname','includes','rockstar0gamer.github.io','katto_auth_2026','search','get','display','flex','block','getDate','replace','closed.html','main-ui','deterrent-ui','copy-btn','innerText','COPIED!','background','#00ff88','COPY KEY','#fff'];
     (function() {
-        // --- SECURITY: SESSION & DOMAIN CHECK ---
-        const urlParams = new URLSearchParams(window.location.search);
-        const session = urlParams.get('session');
-        const validToken = "katto_auth_2026";
-        const officialDomain = "rockstar0gamer.github.io";
-        
-        if (!window.location.hostname.includes(officialDomain) || !session || atob(session) !== validToken) {
-            document.getElementById('deterrent-ui').style.display = 'flex';
-            setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
+        const _0x4d2a = new URLSearchParams(window[_0x5a12[1]][_0x5a12[6]]);
+        const _0x1f3c = _0x4d2a[_0x5a12[7]]('session');
+        if (!window[_0x5a12[1]][_0x5a12[2]][_0x5a12[3]](_0x5a12[4]) || !_0x1f3c || window[_0x5a12[0]](_0x1f3c) !== _0x5a12[5]) {
+            document['getElementById'](_0x5a12[15])['style'][_0x5a12[8]] = _0x5a12[9];
+            setTimeout(() => { window[_0x5a12[1]]['href'] = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
             return;
         }
-
-        // --- SECURITY: ANTI-TRICKER LOOP ---
-        setInterval(function() {
-            const start = new Date().getTime();
-            debugger; 
-            if (new Date().getTime() - start > 100) { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }
-        }, 1000);
-        document.addEventListener('contextmenu', e => e.preventDefault());
-
-        const authorizedDays = [1, 2]; 
-        if (!authorizedDays.includes(new Date().getDate())) { window.location.replace("closed.html"); return; }
-
-        document.getElementById('main-ui').style.display = 'block';
-
-        const encodedData = ["anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1", "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi", "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=", "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx", "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=", "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt"];
-        const grid = document.getElementById('main-grid');
-        encodedData.forEach((enc, i) => {
-            const div = document.createElement('div');
-            div.className = 'card';
-            div.innerHTML = `<h3>Server Node ${String(i+1).padStart(2, '0')}</h3><div class="acc-info">********:********</div><button class="copy-btn" onclick="copyAndMask('${enc}', this)">COPY KEY</button>`;
-            grid.appendChild(div);
+        setInterval(function() { (function(_0x2b1a){return (function(_0x2b1a){return typeof _0x2b1a==='string';})(_0x2b1a)&&(_0x2b1a=>_0x2b1a['constructor']('debugger')['call']('action'))(_0x2b1a);})('stateObject'); }, 500);
+        document['addEventListener']('contextmenu', e => e['preventDefault']());
+        if (![1, 2, 3, 4, 5]['includes'](new Date()[_0x5a12[11]]())) { window[_0x5a12[1]][_0x5a12[12]](_0x5a12[13]); return; }
+        document['getElementById'](_0x5a12[14])['style'][_0x5a12[8]] = _0x5a12[10];
+        const _0x7c21 = ["anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1", "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi", "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=", "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx", "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=", "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt"];
+        const _0x3e1a = document['getElementById']('main-grid');
+        _0x7c21['forEach']((_0xacc, _0xidx) => {
+            const _0xdiv = document['createElement']('div'); _0xdiv['className'] = 'card';
+            _0xdiv['innerHTML'] = `<h3>Server Node ${String(_0xidx+1)['padStart'](2, '0')}</h3><div class="acc-info">********:********</div><button class="copy-btn" onclick="copyAndMask('${_0xacc}', this)">COPY KEY</button>`;
+            _0x3e1a['appendChild'](_0xdiv);
         });
     })();
-
-    function copyAndMask(encoded, btn) {
-        navigator.clipboard.writeText(atob(encoded));
-        btn.innerText = "COPIED!"; btn.style.background = "#00ff88";
-        setTimeout(() => { btn.innerText = "COPY KEY"; btn.style.background = "#fff"; }, 2000);
+    function copyAndMask(_0xenc, _0xbtn) {
+        navigator['clipboard']['writeText'](window['atob'](_0xenc));
+        _0xbtn[_0x5a12[17]] = _0x5a12[18]; _0xbtn['style'][_0x5a12[19]] = _0x5a12[20];
+        setTimeout(() => { _0xbtn[_0x5a12[17]] = _0x5a12[21]; _0xbtn['style'][_0x5a12[19]] = _0x5a12[22]; }, 2000);
     }
 </script>
 </body>

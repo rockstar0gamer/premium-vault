@@ -8,7 +8,6 @@
         :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; }
         body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
         .container { width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 50px 30px; text-align: center; }
-        .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 50px; text-transform: uppercase; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 25px; }
         h1 { font-size: 34px; line-height: 1.1; margin-bottom: 20px; font-weight: 800; color: var(--accent); }
         .btn-yt { display: block; background: #FF0000; color: #fff; padding: 18px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 15px; }
         .btn-unlock { display: block; background: var(--green); color: #000; padding: 18px; border-radius: 16px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-size: 16px; }
@@ -16,17 +15,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="badge">Restock in Progress</div>
         <h1>VAULT IS RESTOCKING</h1>
-        <p style="color:#888; margin-bottom: 40px;">Subscribe for the next notification.</p>
+        <p style="color:#888; margin-bottom: 40px;">Public slots are full. Use your private bypass or wait for the next drop.</p>
         <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE ON YOUTUBE</a>
-        <button class="btn-unlock" onclick="unlockPrivate()">UNLOCK PRIVATE KEY NOW</button>
-        <p style="font-size: 11px; color: #444; margin-top: 30px;">© 2026 KattoFlicks • All Rights Reserved</p>
+        <button class="btn-unlock" onclick="unlockPrivate()">UNLOCK PRIVATE KEY</button>
     </div>
     <script>
-        (function(_0x1b2f,_0x4c2b){const _0x3a12=function(_0x2d17){while(--_0x2d17){_0x1b2f['push'](_0x1b2f['shift']());}};_0x3a12(++_0x4c2b);}(_0x1a2b,0x1b4));function _0x2b1a(_0x1a2b,_0x3a12){const _0x2b1a=_0x1a2b();return _0x2b1a;}const _0x1a2b=['btoa','location','href','private/index.html?session=','katto_private_99'];
-        setInterval(function() { debugger; }, 1000);
-        document.addEventListener('contextmenu', e => e.preventDefault());
+        const _0x1a2b = ['btoa','location','href','private/index.html?session=','katto_private_99'];
         function unlockPrivate() {
             window[_0x1a2b[1]][_0x1a2b[2]] = _0x1a2b[3] + window[_0x1a2b[0]](_0x1a2b[4]);
         }

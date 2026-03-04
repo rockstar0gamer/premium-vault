@@ -19,18 +19,23 @@
         <p style="color:#666; font-size:12px;">Verifying encrypted session...</p>
     </div>
     <script>
-        (function(_0x1b2f,_0x4c2b){const _0x3a12=function(_0x2d17){while(--_0x2d17){_0x1b2f['push'](_0x1b2f['shift']());}};_0x3a12(++_0x4c2b);}(_0x1a2b,0x1b4));function _0x2b1a(_0x1a2b,_0x3a12){const _0x2b1a=_0x1a2b();return _0x2b1a;}const _0x1a2b=['btoa','location','href','vault.html?session=','closed.html','katto_auth_2026','getDate','includes'];
+        // FIXED: Defined array first to prevent ReferenceError
+        const _0x1a2b = ['btoa','location','href','vault.html?session=','closed.html','katto_auth_2026','getDate','includes'];
+        
         (function() {
-            const _0x92a1 = [1, 2, 3, 4, 5];
+            const _0x92a1 = [1, 2, 3, 4, 5]; // Days the vault is open
             const _0x4f2b = new Date()[_0x1a2b[6]]();
+            
             document.addEventListener('contextmenu', e => e.preventDefault());
+            
             setTimeout(() => {
                 if (_0x92a1[_0x1a2b[7]](_0x4f2b)) {
+                    // Redirects to vault with encoded session
                     window[_0x1a2b[1]][_0x1a2b[2]] = _0x1a2b[3] + window[_0x1a2b[0]](_0x1a2b[5]);
                 } else {
                     window[_0x1a2b[1]][_0x1a2b[2]] = _0x1a2b[4];
                 }
-            }, 1500);
+            }, 1800);
         })();
     </script>
 </body>

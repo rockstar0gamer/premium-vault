@@ -26,7 +26,7 @@ This vault utilizes a **Double-Lock Architecture** to protect premium Crunchyrol
 | Component | Security Level | Function |
 | :--- | :--- | :--- |
 | **Public Gateway** | `Standard` | Public restock notification & YouTube verify. |
-| **Private Node** | `Encrypted` | 18-character scramble decryption for keys. |
+| **Private Node** | `Encrypted` | 17k-character scramble decryption for keys. |
 | **Deterrent Layer** | `Critical` | Auto-trace & Interpol redirect for local leaks. |
 
 ---

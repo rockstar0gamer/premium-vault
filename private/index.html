@@ -7,131 +7,52 @@
     <style>
         :root { --accent: #00ff88; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --danger: #ff003c; }
         body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; overflow: hidden; }
-        #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); z-index: 9999; }
-        .warning-icon { font-size: 60px; color: var(--danger); margin-bottom: 20px; animation: blink 0.8s infinite; }
-        .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .container { display: none; width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px; text-align: center; position: relative; }
-        .badge { display: inline-block; background: rgba(0, 255, 136, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 136, 0.2); }
-        h1 { font-size: 26px; margin: 0 0 10px 0; color: #fff; font-weight: 700; }
-        p.subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
-        .key-container { background: #000; border-radius: 16px; padding: 20px; border: 1px solid var(--border); margin-bottom: 25px; position: relative; }
-        .key-label { position: absolute; top: -10px; left: 20px; background: var(--card); padding: 0 10px; font-size: 10px; color: #555; font-weight: bold; }
-        #privateKey { font-family: 'Consolas', monospace; color: var(--accent); font-size: 16px; word-break: break-all; min-height: 24px; letter-spacing: 2px; }
+        #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
+        .container { display: none; width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px; text-align: center; }
         .bar-bg { width: 100%; height: 6px; background: #1c1f24; border-radius: 10px; overflow: hidden; }
-        #bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00ff88, #00c4ff); transition: width 0.1s linear; }
-        #status-txt { font-size: 12px; color: #666; margin-top: 10px; font-weight: 600; text-transform: uppercase; }
-        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 18px; border-radius: 14px; font-weight: 700; cursor: pointer; display: none; transition: 0.3s; }
-        .footer { margin-top: 30px; font-size: 11px; color: #444; letter-spacing: 1px; }
+        #bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #00ff88, #00c4ff); }
+        .key-container { background: #000; border-radius: 16px; padding: 20px; border: 1px solid var(--border); margin: 25px 0; }
+        #privateKey { font-family: monospace; color: var(--accent); letter-spacing: 2px; }
+        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 18px; border-radius: 14px; font-weight: 700; cursor: pointer; display: none; }
     </style>
 </head>
 <body>
-
     <div id="lockdown-ui">
-        <div class="warning-icon">⚠️</div>
-        <h1 style="color:var(--danger); font-size:24px; letter-spacing:2px;">ILLEGAL ACCESS DETECTED</h1>
-        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment. Local bypass attempts are logged and flagged for review.</p>
-        <div class="log-box">
-            STATUS: [LOGGING_REPORT]<br>
-            REMOTE_HOST: <span id="user-ip">...TRACKING...</span><br>
-            VIOLATION: SECURITY_PROTOCOL_BREACH<br>
-            ACTION: ENFORCING_SESSION_KILL
-        </div>
-        <p style="font-size: 11px; color: #555;">DO NOT REFRESH. CLOSING CONNECTION IN 5 SECONDS...</p>
+        <h1 style="color:var(--danger)">ILLEGAL ACCESS DETECTED</h1>
+        <p>ENFORCING SESSION KILL...</p>
     </div>
-
     <div class="container" id="main-content">
-        <div class="badge">Verified Private Access</div>
         <h1>Key Decrypted</h1>
-        <p class="subtitle">Your unique premium credentials have been generated and are ready for use.</p>
-
-        <div style="margin-bottom: 30px;">
-            <div class="bar-bg"><div id="bar-fill"></div></div>
-            <div id="status-txt">Authenticating...</div>
-        </div>
-
-        <div class="key-container">
-            <span class="key-label">CREDENTIALS</span>
-            <div id="privateKey">Initializing...</div>
-        </div>
-
+        <div class="bar-bg"><div id="bar-fill"></div></div>
+        <div id="status-txt" style="font-size:12px; margin:10px 0;">Authenticating...</div>
+        <div class="key-container"><div id="privateKey">Initializing...</div></div>
         <button class="copy-btn" id="copyBtn" onclick="copyPrivate()">Copy Credentials</button>
-        <div class="footer">© 2026 KattoFlicks • All Rights Reserved</div>
     </div>
-
     <script>
-        // Your protected secret
-        const secret = "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==";
-
+        const _0x6a12 = ['atob', 'location', 'hostname', 'search', 'get', 'katto_auth_2026', 'rockstar0gamer.github.io', 'href', 'display', 'block'];
         (function() {
-            // Security Configuration
-            const officialDomain = "rockstar0gamer.github.io";
-            const authKey = "katto_auth_2026";
-            
-            const params = new URLSearchParams(window.location.search);
-            const session = params.get('session');
-            
-            // SECURITY CHECK: Domain, Session Presence, and Session Validity
-            const isOfficial = window.location.hostname.includes(officialDomain) || window.location.hostname === "localhost";
-            const isValidSession = session && atob(session) === authKey;
-
-            if (!isOfficial || !isValidSession) {
-                document.getElementById('lockdown-ui').style.display = 'block';
-                setTimeout(() => { document.getElementById('user-ip').innerText = "192." + Math.floor(Math.random()*255) + ".XX.XX"; }, 1000);
-                setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
+            const _0x4d2a = new URLSearchParams(window[_0x6a12[1]][_0x6a12[3]]);
+            const _0x1f3c = _0x4d2a[_0x6a12[4]]('session');
+            if (!window[_0x6a12[1]][_0x6a12[2]]['includes'](_0x6a12[6]) || !_0x1f3c || window[_0x6a12[0]](_0x1f3c) !== _0x6a12[5]) {
+                document['getElementById']('lockdown-ui')['style'][_0x6a12[8]] = _0x6a12[9];
+                setTimeout(() => { window[_0x6a12[1]][_0x6a12[7]] = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
                 return;
             }
-
-            // Anti-Debugger & Right-click protection
-            setInterval(() => { debugger; }, 1000);
+            setInterval(function() { debugger; }, 1000);
             document.addEventListener('contextmenu', e => e.preventDefault());
-
-            // Reveal UI and Start Generator
-            document.getElementById('main-content').style.display = 'block';
-            startGenerator();
+            document['getElementById']('main-content')['style'][_0x6a12[8]] = _0x6a12[9];
+            _0xstart();
         })();
-
-        function startGenerator() {
-            const keyDisplay = document.getElementById('privateKey');
-            const statusTxt = document.getElementById('status-txt');
-            const barFill = document.getElementById('bar-fill');
-            const copyBtn = document.getElementById('copyBtn');
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            let progress = 0;
-
-            const interval = setInterval(() => {
-                progress += 1.5;
-                barFill.style.width = progress + "%";
-                
-                let randomStr = "";
-                for(let i=0; i<18; i++) randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
-                keyDisplay.innerText = randomStr;
-
-                if (progress > 30) statusTxt.innerText = "Connecting to Secure Node...";
-                if (progress > 60) statusTxt.innerText = "Bypassing Encryption...";
-                if (progress > 85) statusTxt.innerText = "Finalizing Key...";
-
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    keyDisplay.innerText = "********:********";
-                    statusTxt.innerText = "Authentication Successful";
-                    statusTxt.style.color = "#00ff88";
-                    copyBtn.style.display = "block";
-                    barFill.style.background = "#00ff88";
-                }
+        function _0xstart() {
+            let _0xp = 0; const _0xf = document['getElementById']('bar-fill'); const _0xk = document['getElementById']('privateKey');
+            const _0xi = setInterval(() => {
+                _0xp += 2; _0xf['style']['width'] = _0xp + '%';
+                _0xk['innerText'] = Math.random().toString(36).substring(2, 15).toUpperCase();
+                if (_0xp >= 100) { clearInterval(_0xi); _0xk['innerText'] = "********:********"; document['getElementById']('copyBtn')['style'][_0x6a12[8]] = _0x6a12[9]; }
             }, 50);
         }
-
-        function copyPrivate() {
-            navigator.clipboard.writeText(atob(secret));
-            const btn = document.getElementById('copyBtn');
-            btn.innerText = "Copied to Clipboard!";
-            btn.style.background = "#00ff88";
-            setTimeout(() => { 
-                btn.innerText = "Copy Credentials"; 
-                btn.style.background = "#fff";
-            }, 2000);
-        }
+        const _0xsecret = "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==";
+        function copyPrivate() { navigator['clipboard']['writeText'](window['atob'](_0xsecret)); document['getElementById']('copyBtn')['innerText'] = "Copied!"; }
     </script>
 </body>
 </html>

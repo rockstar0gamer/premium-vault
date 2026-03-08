@@ -5,38 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Establishing Connection | KattoFlicks</title>
     <style>
-        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; }
-        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --danger: #ff003c; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        
+        /* Loading UI */
         .container { width: 90%; max-width: 400px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px; text-align: center; }
         .loader { border: 3px solid rgba(255, 100, 0, 0.1); border-top: 3px solid var(--accent); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 25px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Illegal Access UI (Synced with your Screenshot) */
+        #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
+        .warning-icon { font-size: 60px; color: #ffcc00; margin-bottom: 20px; }
+        .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
+        
+        /* Restriction UI (Browser/Adblock) */
+        #restrict-ui { display: none; text-align: center; border: 2px solid var(--accent); padding: 40px; background: rgba(255, 100, 0, 0.05); border-radius: 10px; max-width: 500px; }
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <div id="ads-check-node" class="adsense-ads" style="position:absolute; left:-999px;">&nbsp;</div>
+
+    <div id="lockdown-ui">
+        <div class="warning-icon">⚠️</div>
+        <h1 style="color:var(--danger); font-size:24px; letter-spacing:1px;">ILLEGAL ACCESS DETECTED</h1>
+        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment. Local bypass attempts are logged and flagged for review.</p>
+        <div class="log-box">
+            STATUS: [LOGGING_REPORT]<br>
+            REMOTE_HOST: <span id="user-ip">...TRACKING...</span><br>
+            VIOLATION: SECURITY_PROTOCOL_BREACH<br>
+            ACTION: ENFORCING_SESSION_KILL
+        </div>
+        <p style="font-size: 11px; color: #555;">DO NOT REFRESH. CLOSING CONNECTION IN 5 SECONDS...</p>
+    </div>
+
+    <div id="restrict-ui">
+        <div class="warning-icon" style="color:var(--accent);">⚠️</div>
+        <h1 style="color:#fff; font-size:22px;">Access Restricted</h1>
+        <p id="restrict-msg" style="color:#ccc; font-size:14px;"></p>
+    </div>
+
+    <div class="container" id="loading-ui">
         <div class="loader"></div>
         <h2 style="color:var(--accent); font-size:18px; letter-spacing:1px;">SECURE ACCESS</h2>
         <p style="color:#666; font-size:12px;">Verifying encrypted session...</p>
     </div>
+
     <script>
-        const _0x1a2b = ['btoa','location','href','vault.html?session=','closed.html','katto_auth_2026','getDate','includes','rockstar0gamer.github.io','hostname'];
         (function() {
-            const _0x92a1 = [1, 2, 3]; 
-            const _0x4f2b = new Date()[_0x1a2b[6]]();
-            
-            if (!window[_0x1a2b[1]][_0x1a2b[9]]['includes'](_0x1a2b[8]) && window[_0x1a2b[1]][_0x1a2b[9]] !== "localhost") {
-                window[_0x1a2b[1]][_0x1a2b[2]] = "https://www.interpol.int/en/Crimes/Cybercrime";
+            const loadingUI = document.getElementById('loading-ui');
+            const lockdownUI = document.getElementById('lockdown-ui');
+            const restrictUI = document.getElementById('restrict-ui');
+            const restrictMsg = document.getElementById('restrict-msg');
+
+            // 1. MAINTAINED: Domain Lock
+            const officialDomain = "rockstar0gamer.github.io";
+            if (!window.location.hostname.includes(officialDomain) && window.location.hostname !== "localhost") {
+                loadingUI.style.display = 'none';
+                lockdownUI.style.display = 'block';
+                document.getElementById('user-ip').innerText = "192." + Math.floor(Math.random()*255) + ".XX.XX";
+                setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
                 return;
             }
 
-            document.addEventListener('contextmenu', e => e.preventDefault());
+            // 2. NEW: Browser Check (Chrome Only)
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            if (!isChrome || /Edg/.test(navigator.userAgent)) {
+                loadingUI.style.display = 'none';
+                restrictUI.style.display = 'block';
+                restrictMsg.innerText = "Please use Google Chrome to access this secure node.";
+                return;
+            }
+
+            // 3. NEW: Ad-Block Detection
+            const adsNode = document.getElementById('ads-check-node');
+            if (!adsNode || adsNode.offsetParent === null) {
+                loadingUI.style.display = 'none';
+                restrictUI.style.display = 'block';
+                restrictMsg.innerText = "Ad-Blocker detected. Please disable it to establish a secure connection.";
+                return;
+            }
+
+            // 4. MAINTAINED: Security Protections
             setInterval(() => { debugger; }, 1000);
-            
+            document.addEventListener('contextmenu', e => e.preventDefault());
+
+            // 5. MAINTAINED: Redirection Logic
+            const openDays = [7, 8, 9]; 
+            const today = new Date().getDate();
+            const sessionToken = btoa("katto_auth_2026");
+
             setTimeout(() => {
-                if (_0x92a1[_0x1a2b[7]](_0x4f2b)) {
-                    window[_0x1a2b[1]][_0x1a2b[2]] = _0x1a2b[3] + window[_0x1a2b[0]](_0x1a2b[5]);
-                } else {
-                    window[_0x1a2b[1]][_0x1a2b[2]] = _0x1a2b[4];
+                if (openDays.includes(today)) { 
+                    window.location.href = "vault.html?session=" + sessionToken; 
+                } else { 
+                    window.location.href = "closed.html"; 
                 }
             }, 1500);
         })();

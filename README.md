@@ -14,7 +14,7 @@
 ### ⚡ THE VAULT IS CURRENTLY: `AUTHORIZED ACCESS ONLY` ⚡
 *Accessing the premium tier requires a valid session key obtained via KattoFlicks official drops.*
 
-[🎥 SUBSCRIBE & GET NOTIFIED](https://youtube.com/@kattoflicks) • [🔗 OFFICIAL SITE](https://rockstar0gamer.github.io/premium-vault/)
+[🎥 SUBSCRIBE & GET NOTIFIED](https://youtube.com/@kattoflicks) • [🔗 OFFICIAL SITE](https://shrinkme.click/KattoFlicks_Premium-Vault/)
 
 </div>
 

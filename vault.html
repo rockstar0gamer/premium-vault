@@ -9,7 +9,7 @@
         
         /* RESTORED: Original Design Styles */
         body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; box-sizing: border-box; }
-        .wrapper { max-width: 1000px; margin: 0 auto; display: none; } /* Initially hidden for security check */
+        .wrapper { max-width: 1000px; margin: 0 auto; }
         .header { text-align: center; padding: 40px 0; }
         .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 15px; }
         h1 { font-size: 32px; margin: 0; color: #fff; }
@@ -19,6 +19,8 @@
         .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 25px; transition: 0.3s; position: relative; overflow: hidden; }
         .card:hover { transform: translateY(-5px); border-color: var(--accent); }
         .card h3 { font-size: 14px; color: #666; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px; }
+        
+        /* UPDATED: Password Hiding Feature */
         .acc-info { background: #000; padding: 15px; border-radius: 12px; font-family: monospace; color: var(--green); font-size: 14px; text-align: center; word-break: break-all; margin-bottom: 15px; border: 1px solid #1c1f24; }
         .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; }
         .copy-btn:hover { background: var(--accent); color: #fff; }
@@ -27,7 +29,8 @@
         .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 16px 40px; text-decoration: none; border-radius: 14px; font-weight: bold; margin: 20px 0; box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2); }
         .copyright { font-size: 11px; opacity: 0.3; margin-top: 20px; text-transform: uppercase; }
 
-        /* SECURITY UI: Integrated Illegal Access */
+        /* SECURITY LAYERS: Illegal Access & Restrictions */
+        #main-ui { display: none; }
         #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; margin: 100px auto; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
         .warning-icon { font-size: 60px; color: #ffcc00; margin-bottom: 20px; }
         .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
@@ -57,18 +60,20 @@
         <p id="restrict-msg" style="color:#ccc; font-size:14px;"></p>
     </div>
 
-    <div class="wrapper" id="main-content">
-        <div class="header">
-            <div class="badge">Live Server Status: Online</div>
-            <h1>PREMIUM<span>VAULT</span></h1>
-            <p style="color:#666; font-size: 14px;">Direct Access Credentials • Global Node Access</p>
-        </div>
-        <div class="grid" id="main-grid"></div>
-        <div class="footer-box">
-            <h2 style="color:#fff;">Next Drop Notification</h2>
-            <p style="color:#888; margin-bottom: 25px;">Subscribe to be the first to access the next 50+ account drop.</p>
-            <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE TO CHANNEL</a>
-            <div class="copyright">© KattoFlicks • SECURE ASSETS</div>
+    <div id="main-ui">
+        <div class="wrapper">
+            <div class="header">
+                <div class="badge">Live Server Status: Online</div>
+                <h1>PREMIUM<span>VAULT</span></h1>
+                <p style="color:#666; font-size: 14px;">Direct Access Credentials • Global Node Access</p>
+            </div>
+            <div class="grid" id="main-grid"></div>
+            <div class="footer-box">
+                <h2 style="color:#fff;">Next Drop Notification</h2>
+                <p style="color:#888; margin-bottom: 25px;">Subscribe to be the first to access the next 50+ account drop.</p>
+                <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE TO CHANNEL</a>
+                <div class="copyright">© KattoFlicks • SECURE ASSETS</div>
+            </div>
         </div>
     </div>
 
@@ -76,11 +81,11 @@
         (function() {
             const params = new URLSearchParams(window.location.search);
             const session = params.get('session');
-            const auth = "katto_auth_2026";
+            const authKey = "katto_auth_2026";
             
-            // 1. Domain & Session Validation
+            // 1. SECURITY: Domain & Session Lock
             const isOfficial = window.location.hostname.includes('github.io') || window.location.hostname === "localhost";
-            const isValidSession = session && atob(session) === auth;
+            const isValidSession = session && atob(session) === authKey;
 
             if (!isOfficial || !isValidSession) {
                 document.getElementById('lockdown-ui').style.display = 'block';
@@ -89,7 +94,7 @@
                 return;
             }
 
-            // 2. Browser Check (Chrome Only)
+            // 2. SECURITY: Chrome Only Check
             const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
             if (!isChrome || /Edg/.test(navigator.userAgent)) {
                 document.getElementById('restrict-ui').style.display = 'block';
@@ -97,7 +102,7 @@
                 return;
             }
 
-            // 3. Ad-Block Detection
+            // 3. SECURITY: Ad-Block Detection
             const adsNode = document.getElementById('ads-check-node');
             if (!adsNode || adsNode.offsetParent === null) {
                 document.getElementById('restrict-ui').style.display = 'block';
@@ -105,29 +110,49 @@
                 return;
             }
 
-            // Reveal UI and Protections
+            // 4. SECURITY: Protections
             setInterval(() => { debugger; }, 1000);
             document.addEventListener('contextmenu', e => e.preventDefault());
-            document.getElementById('main-content').style.display = 'block';
-            loadData();
+
+            // Reveal and Load
+            document.getElementById('main-ui').style.display = 'block';
+            loadAccounts();
         })();
 
-        function loadData() {
-            // RESTORED: Original Account List
-            const accounts = ["juannevesm20@gmail.com:mata0512", "jehovahpedro04@gmail.com:jp040505", "mandi.saxby5113@gmail.com:M3dl0ckM5113", "boninimauro31@gmail.com:Mb2020**", "noemi.alves@icloud.com:alvesnoemi98", "dt573392@gmail.com:lUCa19#b", "bl4z34plh4@gmail.com:mulita12", "rafasz999999@gmail.com:Rafael123", "gatosandia111@yandex.com:egs123", "kouhysugoe@gmail.com:kelven123321", "zion.fowler1@icloud.com:heyheyheyY1", "rhuanbrancoc@gmail.com:rhuan0105", "kasemcadams28@gmail.com:5802391123Km"];
+        function loadAccounts() {
+            // Encoded account data
+            const data = ["juannevesm20@gmail.com:mata0512", "jehovahpedro04@gmail.com:jp040505", "mandi.saxby5113@gmail.com:M3dl0ckM5113", "boninimauro31@gmail.com:Mb2020**", "noemi.alves@icloud.com:alvesnoemi98", "dt573392@gmail.com:lUCa19#b", "bl4z34plh4@gmail.com:mulita12", "rafasz999999@gmail.com:Rafael123", "gatosandia111@yandex.com:egs123", "kouhysugoe@gmail.com:kelven123321", "zion.fowler1@icloud.com:heyheyheyY1", "rhuanbrancoc@gmail.com:rhuan0105", "kasemcadams28@gmail.com:5802391123Km"];
+            
             const grid = document.getElementById('main-grid');
-            accounts.forEach((acc, i) => {
+            data.forEach((acc, i) => {
                 const div = document.createElement('div');
                 div.className = 'card';
-                div.innerHTML = `<h3>Server Node ${String(i+1).padStart(2, '0')}</h3><div class="acc-info" id="acc${i}">${acc}</div><button class="copy-btn" onclick="copyIt('acc${i}', this)">Copy Key</button>`;
+                // MAINTAINED: Hiding credentials with ***:***
+                div.innerHTML = `
+                    <h3>Server Node ${String(i+1).padStart(2, '0')}</h3>
+                    <div class="acc-info">********:********</div>
+                    <button class="copy-btn" onclick="unlockAndCopy('${btoa(acc)}', this)">Unlock & Copy Key</button>
+                `;
                 grid.appendChild(div);
             });
         }
 
-        function copyIt(id, b) {
-            navigator.clipboard.writeText(document.getElementById(id).innerText);
-            b.innerText = "Copied!"; b.style.background = "#00ff88";
-            setTimeout(() => { b.innerText = "Copy Key"; b.style.background = "#fff"; }, 2000);
+        function unlockAndCopy(encoded, btn) {
+            const raw = atob(encoded);
+            navigator.clipboard.writeText(raw);
+            
+            const display = btn.previousElementSibling;
+            display.innerText = raw; // Temporarily reveal on copy
+            
+            const originalText = btn.innerText;
+            btn.innerText = "Credentials Copied!";
+            btn.style.background = "#00ff88";
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "#fff";
+                display.innerText = "********:********"; // Re-hide credentials
+            }, 2000);
         }
     </script>
 </body>

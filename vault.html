@@ -87,9 +87,20 @@
 
     <script>
         (function() {
-            const params = new URLSearchParams(window.location.search);
-            const session = params.get('session');
-            const auth = "katto_auth_2026";
+    const params = new URLSearchParams(window.location.search);
+    const session = params.get('session');
+    const auth = "katto_auth_2026";
+    
+    // --- NEW DATE ENFORCEMENT ---
+    const openDays = [7, 8, 9]; 
+    const today = new Date().getDate();
+    
+    if (!openDays.includes(today)) {
+        // If today is NOT an open day, force them to the closed page
+        window.location.href = "closed.html";
+        return;
+    }
+    // ----------------------------;
             
             // Security Validations
             const isOfficial = window.location.hostname.includes('github.io') || window.location.hostname === "localhost";

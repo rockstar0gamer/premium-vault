@@ -3,36 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Dashboard</title>
+    <title>Premium Dashboard | Secure Node</title>
     <style>
-        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; }
-        body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; }
-        #main-ui { display: none; padding: 20px; }
+        :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; --danger: #ff003c; }
+        body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; }
+        
+        /* Main Dashboard UI */
+        #main-ui { display: none; width: 100%; padding: 20px; box-sizing: border-box; }
         .wrapper { max-width: 1000px; margin: 0 auto; }
-        .header { text-align: center; padding: 40px 0; }
+        .header { text-align: center; padding: 40px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+        .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 15px; }
+        h1 { margin: 0; font-size: 28px; color: #fff; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 25px; }
-        .input-box { background: #000; border: 1px solid var(--border); border-radius: 12px; padding: 12px 15px; color: var(--green); margin-bottom: 15px; font-family: monospace; }
-        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 25px; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .input-box { background: #000; border: 1px solid var(--border); border-radius: 12px; padding: 12px 15px; font-family: monospace; color: var(--green); margin-bottom: 15px; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+
+        /* Illegal Access UI (Based on Screenshot) */
+        #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
+        .warning-icon { font-size: 60px; color: #ffcc00; margin-bottom: 20px; }
+        .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
+        
+        /* Restriction UI */
+        #restrict-ui { display: none; text-align: center; border: 2px solid var(--accent); padding: 40px; background: rgba(255, 100, 0, 0.05); border-radius: 10px; max-width: 500px; }
     </style>
 </head>
 <body>
+
+    <div id="ads-check-node" class="adsense-ads" style="position:absolute; left:-999px;">&nbsp;</div>
+
+    <div id="lockdown-ui">
+        <div class="warning-icon">⚠️</div>
+        <h1 style="color:var(--danger); font-size:24px;">ILLEGAL ACCESS DETECTED</h1>
+        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment. Local bypass attempts are logged and flagged for review.</p>
+        <div class="log-box">
+            STATUS: [LOGGING_REPORT]<br>
+            REMOTE_HOST: <span id="user-ip">...TRACKING...</span><br>
+            VIOLATION: SECURITY_PROTOCOL_BREACH<br>
+            ACTION: ENFORCING_SESSION_KILL
+        </div>
+        <p style="font-size: 11px; color: #555;">DO NOT REFRESH. CLOSING CONNECTION IN 5 SECONDS...</p>
+    </div>
+
+    <div id="restrict-ui">
+        <div class="warning-icon" style="color:var(--accent);">⚠️</div>
+        <h1 style="color:#fff; font-size:22px;">Access Restricted</h1>
+        <p id="restrict-msg" style="color:#ccc; font-size:14px;"></p>
+    </div>
+
     <div id="main-ui">
         <div class="wrapper">
-            <div class="header"><h1>PREMIUM VAULT</h1></div>
+            <div class="header">
+                <div class="badge">Connection Active</div>
+                <h1>PREMIUM VAULT</h1>
+            </div>
             <div class="grid" id="main-grid"></div>
         </div>
     </div>
+
     <script>
-        const _0x5a12=['atob','location','href','hostname','github.io','includes','katto_auth_2026','contextmenu','preventDefault','display','block'];(function(){const _0x4d2a=new URLSearchParams(window[_0x5a12[1]][_0x5a12[2]]['split']('?')[1]);const _0x1f3c=_0x4d2a['get']('session');if(!window[_0x5a12[1]][_0x5a12[3]][_0x5a12[5]](_0x5a12[4])||!_0x1f3c||window[_0x5a12[0]](_0x1f3c)!==_0x5a12[6]){window[_0x5a12[1]][_0x5a12[2]]="https://www.interpol.int/en/Crimes/Cybercrime";return;}document.addEventListener(_0x5a12[7],_0xe=>_0xe[_0x5a12[8]]());setInterval(()=>{debugger;},1000);document['getElementById']('main-ui')['style'][_0x5a12[9]]=_0x5a12[10];})();
-        const _0xdata = ["anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1", "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=", "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi", "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=", "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx", "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=", "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt", "amFpZ29tZXozMUBnbWFpbC5jb206Z29tZXowOTI4", "YmNvdXJ0bmV5MzQ4QGdtYWlsLmNvbTp3ZWxjb21lMQ==", "ZGFuaWVsbWFydGluZXozMDExQGdtYWlsLmNvbTpkYW5pZWxtYXJ0aW5lejMwMTE=", "bWFyaW9iaW5vY2hpQGdtYWlsLmNvbTptYXJpbzEyMw==", "bGl6YWJldGhzYW50b3M5ODgyQGdtYWlsLmNvbTpsaXphYmV0aDk4ODI=", "cm9kcmlnb3Bhc3RvcjAyQGdtYWlsLmNvbTpyb2RyaWdvMTIz", "YW5kcmVhc29icmEwNUBnbWFpbC5jb206YW5kcmVhMTIz"];
-        const _0xgrid = document['getElementById']('main-grid');
-        _0xdata['forEach']((_0xd, _0xi) => {
-            const _0xc = document['createElement']('div'); _0xc['className'] = 'card';
-            _0xc['innerHTML'] = `<h3>Node ${String(_0xi+1)['padStart'](2,'0')}</h3><div class="input-box">********:********</div><button class="copy-btn" onclick="copyNode('${_0xd}', this)">Unlock & Copy</button>`;
-            _0xgrid['appendChild'](_0xc);
-        });
-        function copyNode(_0xd, _0xb) { navigator['clipboard']['writeText'](window['atob'](_0xd)); _0xb['innerText'] = "Copied!"; setTimeout(() => { _0xb['innerText'] = "Unlock & Copy"; }, 2000); }
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const session = params.get('session');
+            const auth = "katto_auth_2026";
+            
+            // 1. MAINTAINED: Domain & Session Validation
+            const isOfficial = window.location.hostname.includes('github.io') || window.location.hostname === "localhost";
+            const isValidSession = session && atob(session) === auth;
+
+            if (!isOfficial || !isValidSession) {
+                document.getElementById('lockdown-ui').style.display = 'block';
+                document.getElementById('user-ip').innerText = "192." + Math.floor(Math.random()*255) + ".XX.XX";
+                setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
+                return;
+            }
+
+            // 2. NEW: Chrome Only Restriction
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            if (!isChrome || /Edg/.test(navigator.userAgent)) {
+                document.getElementById('restrict-ui').style.display = 'block';
+                document.getElementById('restrict-msg').innerText = "Please use Google Chrome to access this secure node.";
+                return;
+            }
+
+            // 3. NEW: Ad-Block Detection
+            const adsNode = document.getElementById('ads-check-node');
+            if (!adsNode || adsNode.offsetParent === null) {
+                document.getElementById('restrict-ui').style.display = 'block';
+                document.getElementById('restrict-msg').innerText = "Ad-Blocker detected. Please disable it to establish a secure connection.";
+                return;
+            }
+
+            // 4. MAINTAINED: Protections
+            setInterval(() => { debugger; }, 1000);
+            document.addEventListener('contextmenu', e => e.preventDefault());
+
+            // Reveal UI
+            document.getElementById('main-ui').style.display = 'block';
+            loadData();
+        })();
+
+        function loadData() {
+            // Your Original Encrypted Data
+            const encodedData = [
+                "anVhbm5ldmVzbTIwQGdtYWlsLmNvbTptYXRhMDUxMg==", "amVob3ZhaHBlZHJvMDRAZ21haWwuY29tOkpwMDQwNTA1",
+                "bWFuZGkuc2F4Ynk1MTEzQGdtYWlsLmNvbTpNM2RsMGNrTTUxMTM=", "Ym9uaW5pbWF1cm8zMUBnbWFpbC5jb206TWIyMDIwKio=",
+                "bm9lbWkuYWx2ZXNAaWNsb3VkLmNvbTphbHZlc25vZW1pOTg=", "ZHQ1NzMzOTJAZ21haWwuY29tOmxVQ2ExOSNi",
+                "Ymw0ejQ0cGxoQUBnbWFpbC5jb206bXVsaXRhMTI=", "cmFmYXN6OTk5OTk5QGdtYWlsLmNvbTpSYWZhZWwxMjM=",
+                "Z2F0b3NhbmRpYTExMUB5YW5kZXguY29tOmVnczEyMw==", "a291aHlzdWdvZUBnbWFpbC5jb206a2VsdmVuMTIzMzIx",
+                "emlvbi5mb3dsZXIxQGljbG91ZC5jb206aGV5aGV5aGV5WTE=", "cmh1YW5icmFuY29jQGdtYWlsLmNvbTpyaHVhbjAxMDU=",
+                "a2FzZW1jYWRhbXMyOEBnbWFpbC5jb206NTgwMjM5MTEyM0tt", "amFpZ29tZXozMUBnbWFpbC5jb206Z29tZXowOTI4",
+                "YmNvdXJ0bmV5MzQ4QGdtYWlsLmNvbTp3ZWxjb21lMQ==", "ZGFuaWVsbWFydGluZXozMDExQGdtYWlsLmNvbTpkYW5pZWxtYXJ0aW5lejMwMTE=",
+                "bWFyaW9iaW5vY2hpQGdtYWlsLmNvbTptYXJpbzEyMw==", "bGl6YWJldGhzYW50b3M5ODgyQGdtYWlsLmNvbTpsaXphYmV0aDk4ODI=",
+                "cm9kcmlnb3Bhc3RvcjAyQGdtYWlsLmNvbTpyb2RyaWdvMTIz", "YW5kcmVhc29icmEwNUBnbWFpbC5jb206YW5kcmVhMTIz"
+            ];
+
+            const grid = document.getElementById('main-grid');
+            encodedData.forEach((enc, i) => {
+                const div = document.createElement('div');
+                div.className = 'card';
+                div.innerHTML = `
+                    <h3>Server Node ${String(i+1).padStart(2, '0')}</h3>
+                    <div class="input-box">********:********</div>
+                    <button class="copy-btn" onclick="copyNode('${enc}', this)">Unlock & Copy</button>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function copyNode(data, btn) {
+            navigator.clipboard.writeText(atob(data));
+            const originalText = btn.innerText;
+            btn.innerText = "Credentials Copied!";
+            btn.style.background = "#00ff88";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.background = "#fff";
+            }, 2000);
+        }
     </script>
 </body>
 </html>

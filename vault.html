@@ -98,6 +98,8 @@
     if (!openDays.includes(today)) {
         // If today is NOT an open day, force them to the closed page
         window.location.href = "closed.html";
+        return;
+    }
             
             // Security Validations
             const isOfficial = window.location.hostname.includes('github.io') || window.location.hostname === "localhost";

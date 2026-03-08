@@ -99,15 +99,6 @@
             const session = btoa('katto_auth_2026');
             window.location.href = "private/index.html?session=" + session;
         }
-        // --- NEW AUTO-OPEN LOGIC ---
-    const openDays = [7, 8, 9];
-    const today = new Date().getDate();
-
-    if (openDays.includes(today)) {
-        // If the vault is supposed to be open, send them to index to authenticate
-        window.location.href = "index.html";
-        return;
-    }
     </script>
 </body>
 </html>

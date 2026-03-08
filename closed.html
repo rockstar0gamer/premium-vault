@@ -58,17 +58,6 @@
 
     <script>
         (function() {
-    // --- NEW AUTO-OPEN LOGIC ---
-    const openDays = [7, 8, 9];
-    const today = new Date().getDate();
-
-    if (openDays.includes(today)) {
-        // If the vault is supposed to be open, send them to index to authenticate
-        window.location.href = "index.html";
-        return;
-    }
-    // ----------------------------
-        (function() {
             const mainUI = document.getElementById('main-ui');
             const lockdownUI = document.getElementById('lockdown-ui');
             const restrictUI = document.getElementById('restrict-ui');

@@ -8,19 +8,16 @@
         :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; --danger: #ff003c; }
         body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
         
-        /* Main UI Container */
         .container { display: none; width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 28px; padding: 50px 30px; text-align: center; }
         .badge { display: inline-block; background: rgba(255, 100, 0, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 50px; text-transform: uppercase; border: 1px solid rgba(255, 100, 0, 0.2); margin-bottom: 25px; }
         h1 { font-size: 34px; line-height: 1.1; margin-bottom: 20px; font-weight: 800; color: var(--accent); }
         .btn-yt { display: block; background: #FF0000; color: #fff; padding: 18px; border-radius: 16px; font-weight: 700; text-decoration: none; margin-bottom: 15px; }
         .btn-unlock { display: block; background: var(--green); color: #000; padding: 18px; border-radius: 16px; font-weight: 700; cursor: pointer; border: none; width: 100%; font-size: 16px; }
 
-        /* Illegal Access UI (Based on Screenshot) */
         #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
         .warning-icon { font-size: 60px; color: #ffcc00; margin-bottom: 20px; }
         .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
         
-        /* Restriction UI (Browser/Adblock) */
         #restrict-ui { display: none; text-align: center; border: 2px solid var(--accent); padding: 40px; background: rgba(255, 100, 0, 0.05); border-radius: 10px; max-width: 500px; }
     </style>
 </head>
@@ -31,14 +28,12 @@
     <div id="lockdown-ui">
         <div class="warning-icon">⚠️</div>
         <h1 style="color:var(--danger); font-size:24px;">ILLEGAL ACCESS DETECTED</h1>
-        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment. Local bypass attempts are logged and flagged for review.</p>
+        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment. Local bypass attempts are logged.</p>
         <div class="log-box">
             STATUS: [LOGGING_REPORT]<br>
             REMOTE_HOST: <span id="user-ip">...TRACKING...</span><br>
-            VIOLATION: SECURITY_PROTOCOL_BREACH<br>
-            ACTION: ENFORCING_SESSION_KILL
+            VIOLATION: SECURITY_PROTOCOL_BREACH
         </div>
-        <p style="font-size: 11px; color: #555;">DO NOT REFRESH. CLOSING CONNECTION IN 5 SECONDS...</p>
     </div>
 
     <div id="restrict-ui">
@@ -58,21 +53,33 @@
 
     <script>
         (function() {
+            // --- ANTI-BOOKMARK & DIRECT ACCESS PROTECTION ---
+            const officialDomain = "rockstar0gamer.github.io";
+            const shrinkLink = "https://shrinkme.click/KattoFlicks_Premium-Vault";
+            
+            // Check if user came from your index.html or has a session
+            const hasReferrer = document.referrer.includes(officialDomain) || document.referrer.includes("localhost");
+            const params = new URLSearchParams(window.location.search);
+            const hasSession = params.get('auth') === btoa("restock_active");
+
+            if (!hasReferrer && !hasSession) {
+                window.location.href = shrinkLink;
+                return;
+            }
+            // ------------------------------------------------
+
             const mainUI = document.getElementById('main-ui');
             const lockdownUI = document.getElementById('lockdown-ui');
             const restrictUI = document.getElementById('restrict-ui');
             const restrictMsg = document.getElementById('restrict-msg');
 
-            // 1. MAINTAINED: Domain Lock
-            const isOfficial = window.location.hostname.includes('github.io') || window.location.hostname === "localhost";
+            const isOfficial = window.location.hostname.includes(officialDomain) || window.location.hostname === "localhost";
             if (!isOfficial) {
                 lockdownUI.style.display = 'block';
                 document.getElementById('user-ip').innerText = "192." + Math.floor(Math.random()*255) + ".XX.XX";
-                setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
                 return;
             }
 
-            // 2. NEW: Chrome Only Restriction
             const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
             if (!isChrome || /Edg/.test(navigator.userAgent)) {
                 restrictUI.style.display = 'block';
@@ -80,7 +87,6 @@
                 return;
             }
 
-            // 3. NEW: Ad-Block Detection
             const adsNode = document.getElementById('ads-check-node');
             if (!adsNode || adsNode.offsetParent === null) {
                 restrictUI.style.display = 'block';
@@ -88,13 +94,11 @@
                 return;
             }
 
-            // 4. MAINTAINED: Protections
             mainUI.style.display = 'block';
             document.addEventListener('contextmenu', e => e.preventDefault());
             setInterval(() => { debugger; }, 1000);
         })();
 
-        // 5. MAINTAINED: Private Session Redirection
         function unlockPrivate() {
             const session = btoa('katto_auth_2026');
             window.location.href = "private/index.html?session=" + session;

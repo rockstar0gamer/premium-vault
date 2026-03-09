@@ -13,7 +13,7 @@
         .loader { border: 3px solid rgba(255, 100, 0, 0.1); border-top: 3px solid var(--accent); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 0 auto 25px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* Illegal Access UI (Synced with your Screenshot) */
+        /* Illegal Access UI */
         #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
         .warning-icon { font-size: 60px; color: #ffcc00; margin-bottom: 20px; }
         .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
@@ -58,7 +58,7 @@
             const restrictUI = document.getElementById('restrict-ui');
             const restrictMsg = document.getElementById('restrict-msg');
 
-            // 1. MAINTAINED: Domain Lock
+            // 1. Domain Lock
             const officialDomain = "rockstar0gamer.github.io";
             if (!window.location.hostname.includes(officialDomain) && window.location.hostname !== "localhost") {
                 loadingUI.style.display = 'none';
@@ -68,7 +68,7 @@
                 return;
             }
 
-            // 2. NEW: Browser Check (Chrome Only)
+            // 2. Browser Check (Chrome Only)
             const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
             if (!isChrome || /Edg/.test(navigator.userAgent)) {
                 loadingUI.style.display = 'none';
@@ -77,7 +77,7 @@
                 return;
             }
 
-            // 3. NEW: Ad-Block Detection
+            // 3. Ad-Block Detection
             const adsNode = document.getElementById('ads-check-node');
             if (!adsNode || adsNode.offsetParent === null) {
                 loadingUI.style.display = 'none';
@@ -86,20 +86,24 @@
                 return;
             }
 
-            // 4. MAINTAINED: Security Protections
+            // 4. Security Protections
             setInterval(() => { debugger; }, 1000);
             document.addEventListener('contextmenu', e => e.preventDefault());
 
-            // 5. MAINTAINED: Redirection Logic
-            const openDays = [1, 2]; 
+            // 5. Redirection Logic
+            const openDays = [7, 8, 9]; 
             const today = new Date().getDate();
             const sessionToken = btoa("katto_auth_2026");
+            
+            // KEY UPDATE: Generates the authorization needed for closed.html
+            const restockAuth = btoa("restock_active");
 
             setTimeout(() => {
                 if (openDays.includes(today)) { 
                     window.location.href = "vault.html?session=" + sessionToken; 
                 } else { 
-                    window.location.href = "closed.html"; 
+                    // UPDATED: Now includes the auth parameter to allow access through this gate
+                    window.location.href = "closed.html?auth=" + restockAuth; 
                 }
             }, 1500);
         })();

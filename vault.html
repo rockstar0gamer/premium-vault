@@ -24,7 +24,7 @@
         .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 16px 40px; text-decoration: none; border-radius: 14px; font-weight: bold; margin: 20px 0; box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2); }
         .copyright { font-size: 11px; color: #444; margin-top: 25px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
         #main-ui { display: none; }
-        #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; margin: 100px auto; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); }
+        #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; margin: 100px auto; }
         .warning-icon { font-size: 60px; color: #ffcc00; margin-bottom: 20px; }
         .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
         #restrict-ui { display: none; text-align: center; border: 2px solid var(--accent); padding: 40px; background: rgba(255, 100, 0, 0.05); border-radius: 10px; max-width: 500px; margin: 100px auto; }
@@ -32,13 +32,11 @@
 </head>
 <body>
 
-    <div id="tester" class="ad-zone-wrapper" style="position:absolute; height:1px; width:1px; top:-1px; left:-1px;"></div>
-
     <div id="lockdown-ui">
         <div class="warning-icon">⚠️</div>
         <h1 style="color:var(--danger); font-size:24px;">ILLEGAL ACCESS DETECTED</h1>
-        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment. Local bypass attempts are logged.</p>
-        <div class="log-box">STATUS: [LOGGING_REPORT]<br>REMOTE_HOST: <span id="user-ip">...TRACKING...</span><br>VIOLATION: SECURITY_PROTOCOL_BREACH</div>
+        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment.</p>
+        <div class="log-box">STATUS: [LOGGING_REPORT]<br>REMOTE_HOST: <span id="user-ip">...TRACKING...</span></div>
     </div>
 
     <div id="restrict-ui">
@@ -75,25 +73,21 @@
 
             if (!isOfficial || !isValidSession) {
                 document.getElementById('lockdown-ui').style.display = 'block';
-                document.getElementById('user-ip').innerText = "192.168." + Math.floor(Math.random()*255) + ".1";
+                document.getElementById('user-ip').innerText = "192.168.1." + Math.floor(Math.random()*255);
                 setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
                 return;
             }
 
-            // More robust Ad-Block check with 500ms delay to prevent false positives
-            setTimeout(() => {
-                const tester = document.getElementById('tester');
-                const isAdsBlocked = !tester || tester.offsetParent === null || tester.offsetHeight === 0;
-                const isScriptBlocked = typeof og_load !== 'function';
+            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+            if (!isChrome || /Edg/.test(navigator.userAgent)) {
+                document.getElementById('restrict-ui').style.display = 'block';
+                document.getElementById('restrict-msg').innerText = "Please use Google Chrome to access this secure node.";
+                return;
+            }
 
-                if (isAdsBlocked || isScriptBlocked) {
-                    document.getElementById('restrict-ui').style.display = 'block';
-                    document.getElementById('restrict-msg').innerText = "Ad-Blocker detected. Please disable it and refresh to establish a secure connection.";
-                } else {
-                    document.getElementById('main-ui').style.display = 'block';
-                    loadAccounts();
-                }
-            }, 500);
+            // AD BLOCKER REMOVED - Loading content immediately
+            document.getElementById('main-ui').style.display = 'block';
+            loadAccounts();
 
             setInterval(() => { debugger; }, 1000);
             document.addEventListener('contextmenu', e => e.preventDefault());
@@ -116,7 +110,7 @@
                     og_load();
                     window.og_converted = function() { isVerified = true; performCopy(encoded, btn); };
                 } else {
-                    alert("Verification system failed to load. Please check your connection.");
+                    alert("Monetization failed to load. If you have an ad-blocker, please disable it to copy.");
                 }
                 return;
             }

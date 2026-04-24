@@ -8,13 +8,10 @@
     <style>
         :root { --accent: #00ff88; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --danger: #ff003c; }
         body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; overflow: hidden; }
-        
         #lockdown-ui { display: none; text-align: center; border: 2px solid var(--danger); padding: 40px; background: rgba(255, 0, 60, 0.05); border-radius: 10px; max-width: 500px; box-shadow: 0 0 50px rgba(255, 0, 60, 0.2); z-index: 9999; }
         .warning-icon { font-size: 60px; color: #ffcc00; margin-bottom: 20px; }
         .log-box { background: #000; padding: 15px; border-radius: 5px; text-align: left; font-size: 11px; color: #ff003c; border-left: 3px solid var(--danger); margin: 20px 0; font-family: monospace; }
-        
         #restrict-ui { display: none; text-align: center; border: 2px solid var(--accent); padding: 40px; background: rgba(0, 255, 136, 0.05); border-radius: 10px; max-width: 500px; }
-
         .container { display: none; width: 100%; max-width: 480px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px; text-align: center; position: relative; }
         .badge { display: inline-block; background: rgba(0, 255, 136, 0.1); color: var(--accent); font-size: 11px; font-weight: 800; padding: 6px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 136, 0.2); }
         h1 { font-size: 26px; margin: 0 0 10px 0; color: #fff; font-weight: 700; }
@@ -31,17 +28,12 @@
 </head>
 <body>
 
+    <div id="tester" class="ad-zone-wrapper" style="position:absolute; height:1px; width:1px; top:-1px; left:-1px;"></div>
+
     <div id="lockdown-ui">
         <div class="warning-icon">⚠️</div>
-        <h1 style="color:var(--danger); font-size:24px; letter-spacing:2px;">ILLEGAL ACCESS DETECTED</h1>
-        <p style="font-size:14px; color:#aaa;">Unauthorized connection environment. Local bypass attempts are logged and flagged for review.</p>
-        <div class="log-box">
-            STATUS: [LOGGING_REPORT]<br>
-            REMOTE_HOST: <span id="user-ip">...TRACKING...</span><br>
-            VIOLATION: SECURITY_PROTOCOL_BREACH<br>
-            ACTION: ENFORCING_SESSION_KILL
-        </div>
-        <p style="font-size: 11px; color: #555;">DO NOT REFRESH. CLOSING CONNECTION IN 5 SECONDS...</p>
+        <h1 style="color:var(--danger); font-size:24px;">ILLEGAL ACCESS DETECTED</h1>
+        <div class="log-box">STATUS: [LOGGING_REPORT]<br>REMOTE_HOST: <span id="user-ip">...TRACKING...</span></div>
     </div>
 
     <div id="restrict-ui">
@@ -53,113 +45,67 @@
     <div class="container" id="main-content">
         <div class="badge">Verified Private Access</div>
         <h1>Key Decrypted</h1>
-        <p class="subtitle">Your unique premium credentials have been generated and are ready for use.</p>
-
-        <div style="margin-bottom: 30px;">
-            <div class="bar-bg"><div id="bar-fill"></div></div>
-            <div id="status-txt">Authenticating...</div>
-        </div>
-
-        <div class="key-container">
-            <span class="key-label">CREDENTIALS</span>
-            <div id="privateKey">Initializing...</div>
-        </div>
-
+        <div style="margin-bottom: 30px;"><div class="bar-bg"><div id="bar-fill"></div></div><div id="status-txt">Authenticating...</div></div>
+        <div class="key-container"><span class="key-label">CREDENTIALS</span><div id="privateKey">Initializing...</div></div>
         <button class="copy-btn" id="copyBtn" onclick="copyPrivate()">Copy Credentials</button>
-        <div class="footer">© KattoFlicks 2026 • All Rights Reserved • SECURE ASSETS</div>
     </div>
 
     <script>
         const secret = "QWJyYW1sZXR0MTIyMTAyQG91dGxvb2suY29tIDsgMTIyMTAyYUIhIQ==";
-        let isVerified = false; // Tracks if user completed locker
+        let isVerified = false;
 
         (function() {
-            const officialDomain = "rockstar0gamer.github.io";
             const authKey = "katto_auth_2026";
             const params = new URLSearchParams(window.location.search);
             const session = params.get('session');
-            
-            const isOfficial = window.location.hostname.includes(officialDomain) || window.location.hostname === "localhost" || window.location.protocol === "file:";
+            const isOfficial = window.location.hostname.includes('github.io') || window.location.hostname === "localhost" || window.location.protocol === "file:";
             const isValidSession = session && atob(session) === authKey;
 
             if (!isOfficial || !isValidSession) {
                 document.getElementById('lockdown-ui').style.display = 'block';
-                document.getElementById('user-ip').innerText = "192." + Math.floor(Math.random()*255) + ".XX.XX";
+                document.getElementById('user-ip').innerText = "192.168.1.1";
                 setTimeout(() => { window.location.href = "https://www.interpol.int/en/Crimes/Cybercrime"; }, 5000);
                 return;
             }
 
-            const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-            if (!isChrome || /Edg/.test(navigator.userAgent)) {
-                document.getElementById('restrict-ui').style.display = 'block';
-                document.getElementById('restrict-msg').innerText = "Please use Google Chrome to establish a secure private connection.";
-                return;
-            }
-
-            setInterval(() => { debugger; }, 1000);
-            document.addEventListener('contextmenu', e => e.preventDefault());
-
-            document.getElementById('main-content').style.display = 'block';
-            startGenerator();
+            setTimeout(() => {
+                const tester = document.getElementById('tester');
+                if (!tester || tester.offsetParent === null || tester.offsetHeight === 0 || typeof og_load !== 'function') {
+                    document.getElementById('restrict-ui').style.display = 'block';
+                    document.getElementById('restrict-msg').innerText = "Ad-Blocker detected. Please disable it and refresh.";
+                } else {
+                    document.getElementById('main-content').style.display = 'block';
+                    startGenerator();
+                }
+            }, 500);
         })();
 
         function startGenerator() {
             const keyDisplay = document.getElementById('privateKey');
-            const statusTxt = document.getElementById('status-txt');
             const barFill = document.getElementById('bar-fill');
             const copyBtn = document.getElementById('copyBtn');
-            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             let progress = 0;
-
             const interval = setInterval(() => {
-                progress += 1.5;
+                progress += 2;
                 barFill.style.width = progress + "%";
-                let randomStr = "";
-                for(let i=0; i<18; i++) randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
-                keyDisplay.innerText = randomStr;
-
-                if (progress > 30) statusTxt.innerText = "Connecting to Secure Node...";
-                if (progress > 60) statusTxt.innerText = "Bypassing Encryption...";
-                if (progress > 85) statusTxt.innerText = "Finalizing Key...";
-
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    keyDisplay.innerText = "********:********";
-                    statusTxt.innerText = "Authentication Successful";
-                    statusTxt.style.color = "#00ff88";
-                    copyBtn.style.display = "block";
-                    barFill.style.background = "#00ff88";
-                }
+                if (progress >= 100) { clearInterval(interval); keyDisplay.innerText = "********:********"; copyBtn.style.display = "block"; }
             }, 50);
         }
 
         function copyPrivate() {
             if (!isVerified) {
-                // Trigger the OGAds locker
-                if (typeof og_load === "function") {
-                    og_load();
-                } else {
-                    alert("Verification system is loading. Please disable any tracking protection or adblockers.");
-                    return;
-                }
-
-                // Wait for the completion callback
-                window.og_converted = function() {
-                    isVerified = true;
-                    performPrivateCopy();
-                };
-                return; // Stop here until verified
+                og_load();
+                window.og_converted = function() { isVerified = true; performPrivateCopy(); };
+                return;
             }
-            
             performPrivateCopy();
         }
 
         function performPrivateCopy() {
             navigator.clipboard.writeText(atob(secret));
             const btn = document.getElementById('copyBtn');
-            btn.innerText = "Copied to Clipboard!";
-            btn.style.background = "#00ff88";
-            setTimeout(() => { btn.innerText = "Copy Credentials"; btn.style.background = "#fff"; }, 2000);
+            btn.innerText = "Copied!";
+            setTimeout(() => { btn.innerText = "Copy Credentials"; }, 2000);
         }
     </script>
 </body>

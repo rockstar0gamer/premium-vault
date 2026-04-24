@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Dashboard | Secure Node</title>
-    <script type="text/javascript" src="https://checkmyapp.store/cl/i/1x3x3x"></script>
+    <script type="text/javascript" src="https://checkmyapp.store/cl/js/joq3y"></script>
     <style>
         :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; --danger: #ff003c; }
         
@@ -37,8 +37,6 @@
     </style>
 </head>
 <body>
-
-    <div id="ads-check-node" class="adsense-ads" style="position:absolute; left:-999px;">&nbsp;</div>
 
     <div id="lockdown-ui">
         <div class="warning-icon">⚠️</div>
@@ -78,7 +76,7 @@
         let isVerified = false; // Tracks if the user has completed the locker
 
         (function() {
-            const openDays = [1,2,13]; // Added 13 to allow testing today
+            const openDays = [1,2,13]; 
             const today = new Date().getDate();
             
             if (!openDays.includes(today)) {
@@ -103,12 +101,6 @@
             const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
             if (!isChrome || /Edg/.test(navigator.userAgent)) {
                 showRestrict("Please use Google Chrome to access this secure node.");
-                return;
-            }
-
-            const adsNode = document.getElementById('ads-check-node');
-            if (!adsNode || adsNode.offsetParent === null) {
-                showRestrict("Ad-Blocker detected. Please disable it to establish a secure connection.");
                 return;
             }
 
@@ -147,7 +139,7 @@
                 if (typeof og_load === "function") {
                     og_load();
                 } else {
-                    alert("Verification system is loading. Please disable adblockers.");
+                    alert("Verification system is loading. Please disable any tracking protection or adblockers.");
                     return;
                 }
                 

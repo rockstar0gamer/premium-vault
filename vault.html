@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Dashboard | Secure Node</title>
+    <script type="text/javascript" id="ogjs" src="https://appchecker.space/cl/js/vej899"></script>
     <style>
         :root { --accent: #FF6400; --bg: #0a0b0d; --card: #14161a; --border: #23262d; --green: #00ff88; --danger: #ff003c; }
         
-        /* RESTORED: Original Design Styles */
         body { background: var(--bg); color: #e1e1e1; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; box-sizing: border-box; }
         .wrapper { max-width: 1000px; margin: 0 auto; }
         .header { text-align: center; padding: 40px 0; }
@@ -20,15 +20,12 @@
         .card:hover { transform: translateY(-5px); border-color: var(--accent); }
         .card h3 { font-size: 14px; color: #666; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Password Hiding Feature */
         .acc-info { background: #000; padding: 15px; border-radius: 12px; font-family: monospace; color: var(--green); font-size: 14px; text-align: center; word-break: break-all; margin-bottom: 15px; border: 1px solid #1c1f24; }
         .copy-btn { width: 100%; background: #fff; color: #000; border: none; padding: 12px; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.2s; }
         .copy-btn:hover { background: var(--accent); color: #fff; }
 
         .footer-box { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 50px 20px; text-align: center; margin-top: 60px; }
         .btn-yt { display: inline-block; background: #FF0000; color: white; padding: 16px 40px; text-decoration: none; border-radius: 14px; font-weight: bold; margin: 20px 0; box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2); }
-        
-        /* UPDATED: Footer Text Style */
         .copyright { font-size: 11px; color: #444; margin-top: 25px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
 
         /* SECURITY LAYERS */
@@ -40,8 +37,6 @@
     </style>
 </head>
 <body>
-
-    <div id="ads-check-node" class="adsense-ads" style="position:absolute; left:-999px;">&nbsp;</div>
 
     <div id="lockdown-ui">
         <div class="warning-icon">⚠️</div>
@@ -71,25 +66,17 @@
             <div class="grid" id="main-grid"></div>
             <div class="footer-box">
                 <h2 style="color:#fff;">Next Drop Notification</h2>
-                <a href="https://youtube.com/@kattoflicks?si=DsGDfEHk6w1zw4yL" class="btn-yt" target="_blank">SUBSCRIBE TO CHANNEL</a>
+                <a href="https://youtube.com/@kattoflicks" class="btn-yt" target="_blank">SUBSCRIBE TO CHANNEL</a>
                 <div class="copyright">© KattoFlicks 2026 • All Rights Reserved • SECURE ASSETS</div>
             </div>
         </div>
     </div>
 
     <script>
-        (function() {
-            // --- NEW: ANTI-BOOKMARK DATE PROTECTION ---
-            const openDays = [1,2,3,4,5,6,7,8]; 
-            const today = new Date().getDate();
-            
-            if (!openDays.includes(today)) {
-                // Kick out bookmarked users if it's not the right day
-                window.location.href = "https://shrinkme.click/KattoFlicks_Premium-Vault/";
-                return;
-            }
-            // ------------------------------------------
+        let pendingAction = null;
 
+        (function() {
+            // Check Session Security
             const params = new URLSearchParams(window.location.search);
             const session = params.get('session');
             const authKey = "katto_auth_2026";
@@ -104,15 +91,10 @@
                 return;
             }
 
+            // Browser Restriction
             const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
             if (!isChrome || /Edg/.test(navigator.userAgent)) {
                 showRestrict("Please use Google Chrome to access this secure node.");
-                return;
-            }
-
-            const adsNode = document.getElementById('ads-check-node');
-            if (!adsNode || adsNode.offsetParent === null) {
-                showRestrict("Ad-Blocker detected. Please disable it to establish a secure connection.");
                 return;
             }
 
@@ -121,6 +103,7 @@
                 document.getElementById('restrict-msg').innerText = msg;
             }
 
+            // Anti-Inspect
             setInterval(() => { debugger; }, 1000);
             document.addEventListener('contextmenu', e => e.preventDefault());
 
@@ -129,23 +112,41 @@
         })();
 
         function loadAccounts() {
-            const data = ["timfay11@gmail.com:Sportage203!", "miguel.ameline@orange.fr:Callofmiguel97", "marcosr.2071@gmail.com:Mouse1321", "Abramlett122102@outlook.com:122102aB!!", "elpspley322@gmail.com:amaterasu32", "lmlottarmathaus10@gmail.com:lottarlol007", "mayick7591@hotmail.com:SignoMiriam759111052021", "justingamer954@gmail.com:Justiniscool123!", "clydediel.agravante@gmail.com:Bhabyquh_23", "juliocesaralvespessoa@gmail.com:Jc14h6ma17!", "gabo220294@gmail.com:Toxicone32#", "hamori1402@gmail.com:Oriham14", "unarco01@gmail.com:LINKmola01!", "ravisoni7790985321@gmail.com:Ravi@1711", "lanaesgorda@gmail.com:MrDaniel55", "cemlucalinde@googlemail.com:Cani1967", "gabriel.araujo.jb@gmail.com:biel1412"];
+            const data = ["juannevesm20@gmail.com:mata0512", "jehovahpedro04@gmail.com:jp040505", "mandi.saxby5113@gmail.com:M3dl0ckM5113", "boninimauro31@gmail.com:Mb2020**", "noemi.alves@icloud.com:alvesnoemi98", "dt573392@gmail.com:lUCa19#b", "bl4z34plh4@gmail.com:mulita12", "rafasz999999@gmail.com:Rafael123", "gatosandia111@yandex.com:egs123", "kouhysugoe@gmail.com:kelven123321", "zion.fowler1@icloud.com:heyheyheyY1", "rhuanbrancoc@gmail.com:rhuan0105", "kasemcadams28@gmail.com:5802391123Km"];
             
             const grid = document.getElementById('main-grid');
-            grid.innerHTML = ''; // Clear existing cards before loading
             data.forEach((acc, i) => {
                 const div = document.createElement('div');
                 div.className = 'card';
                 div.innerHTML = `
                     <h3>Server Node ${String(i+1).padStart(2, '0')}</h3>
                     <div class="acc-info">********:********</div>
-                    <button class="copy-btn" onclick="unlockAndCopy('${btoa(acc)}', this)">Unlock & Copy Key</button>
+                    <button class="copy-btn" onclick="processUnlock('${btoa(acc)}', this)">Unlock & Copy Key</button>
                 `;
                 grid.appendChild(div);
             });
         }
 
-        function unlockAndCopy(encoded, btn) {
+        function processUnlock(encoded, btn) {
+            // Check if user is already verified (via OGAds variable)
+            if (typeof og_converted !== 'undefined' && og_converted) {
+                executeCopy(encoded, btn);
+            } else {
+                // Save the intended action to trigger after locker closes
+                pendingAction = { encoded, btn };
+                og_load(); 
+            }
+        }
+
+        // Listener for when the locker is completed
+        window.og_onConversion = function() {
+            if (pendingAction) {
+                executeCopy(pendingAction.encoded, pendingAction.btn);
+                pendingAction = null;
+            }
+        };
+
+        function executeCopy(encoded, btn) {
             const raw = atob(encoded);
             navigator.clipboard.writeText(raw);
             const display = btn.previousElementSibling;
@@ -156,7 +157,7 @@
                 btn.innerText = "Unlock & Copy Key";
                 btn.style.background = "#fff";
                 display.innerText = "********:********"; 
-            }, 2000);
+            }, 3000);
         }
     </script>
 </body>

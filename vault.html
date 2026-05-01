@@ -80,7 +80,7 @@
     <script>
         (function() {
             // --- NEW: ANTI-BOOKMARK DATE PROTECTION ---
-            const openDays = [1, 2, 3, 4, 5, 6, 7]; 
+            const openDays = [1,2]; 
             const today = new Date().getDate();
             
             if (!openDays.includes(today)) {
@@ -129,24 +129,25 @@
         })();
 
         function loadAccounts() {
+            // Base64 encoded credentials (format: email ; password)
             const data = [
-                "timfay11@gmail.com:Sportage203!",
-                "miguel.ameline@orange.fr:Callofmiguel97",
-                "marcosr.2071@gmail.com:Mouse1321",
-                "Abramlett122102@outlook.com:122102aB!!",
-                "elpspley322@gmail.com:amaterasu32",
-                "lmlottarmathaus10@gmail.com:lottarlol007",
-                "mayick7591@hotmail.com:SignoMiriam759111052021",
-                "justingamer954@gmail.com:Justiniscool123!",
-                "clydediel.agravante@gmail.com:Bhabyquh_23",
-                "juliocesaralvespessoa@gmail.com:Jc14h6ma17!",
-                "gabo220294@gmail.com:Toxicone32#",
-                "hamori1402@gmail.com:Oriham14",
-                "unarco01@gmail.com:LINKmola01!",
-                "ravisoni7790985321@gmail.com:Ravi@1711",
-                "lanaesgorda@gmail.com:MrDaniel55",
-                "cemlucalinde@googlemail.com:Cani1967",
-                "gabriel.araujo.jb@gmail.com:biel1412"
+                "dGltZmF5MTFAZ21haWwuY29tIDsgU3BvcnRhZ2UyMDMh",
+                "bWlndWVsLmFtZWxpbmVAb3JhbmdlLmZyIDsgQ2FsbG9mbWlndWVsOTc=",
+                "bWFyY29zci4yMDcxQGdtYWlsLmNvbSA7IE1vdXNlMTMyMQ==",
+                "QWJyYW1sZXR0MTIyMTAyQG91dGxvb2suY29tIDsgMTIyMTAyYUIhIQ==",
+                "ZWxwcy9wbGV5MzIyQGdtYWlsLmNvbSA7IGFtYXRlcmFzdTMy",
+                "bG1sb3R0YXJtYXRoYXVzMTBAZ21haWwuY29tIDsgbG90dGFybG9sMDA3",
+                "bWF5aWNrNzU5MUBob3RtYWlsLmNvbSA7IFNpZ25vTWlyaWFtNzU5MTExMDUyMDIx",
+                "anVzdGluZ2FtZXI5NTRAZ21haWwuY29tIDsgSnVzdGluaXNjb29sMTIzIQ==",
+                "Y2x5ZGVkaWVsLmFncmF2YW50ZUBnbWFpbC5jb20gOyBCaGFieXF1aF8yMw==",
+                "anVsaW9jZXNhcmFsdmVzcGVzc29hQGdtYWlsLmNvbSA7IEpjMTRoNm1hMTch",
+                "Z2FibzIyMDI5NEBnbWFpbC5jb20gOyBUb3hpY29uZTMyIw==",
+                "aGFtb3JpMTQwMkBnbWFpbC5jb20gOyBPcmloYW0xNA==",
+                "dW5hcmNvMDFAZ21haWwuY29tIDsgTElOS21vbGEwMSE=",
+                "cmF2aXNvbmk3NzkwOTg1MzIxQGdtYWlsLmNvbSA7IFJhdmFAMTcxMQ==",
+                "bGFuYWVzZ29yZGFAZ21haWwuY29tIDsgTXJEYW5pZWw1NQ==",
+                "Y2VtbHVjYWxpbmRlQGdvb2dsZW1haWwuY29tIDsgQ2FuaTE5Njc=",
+                "Z2FicmllbC5hcmF1am8uamJAZ21haWwuY29tIDsgYmllbDE0MTI="
             ];
             
             const grid = document.getElementById('main-grid');
@@ -156,7 +157,7 @@
                 div.innerHTML = `
                     <h3>Server Node ${String(i+1).padStart(2, '0')}</h3>
                     <div class="acc-info">********:********</div>
-                    <button class="copy-btn" onclick="unlockAndCopy('${btoa(acc)}', this)">Unlock & Copy Key</button>
+                    <button class="copy-btn" onclick="unlockAndCopy('${acc}', this)">Unlock & Copy Key</button>
                 `;
                 grid.appendChild(div);
             });
